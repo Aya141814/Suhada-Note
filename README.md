@@ -80,3 +80,6 @@ ActiveJob: バックグラウンドジョブ処理で投稿日数を計算し、
 
 画面遷移図　Figma URL
 https://www.figma.com/design/A0KF24zhtDZSwhMTmjC18z/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=VqINyHzzBL41LtER-1 
+
+ER図
+https://app.diagrams.net/#G1gxLZpK0wQogF_ZGB841fAlB-3LnZvrHH#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D 
