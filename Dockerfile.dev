@@ -14,4 +14,3 @@ RUN mkdir /myapp
 WORKDIR /myapp
 RUN gem install bundler
 COPY . /myapp
-RUN chown rails:rails -R /myapp
