@@ -1,7 +1,7 @@
 <header>
-    <nav class='navbar navbar-expand-lg navigation navbar-light bg-light'>
+    <nav class='navbar navbar-expand-lg navbar-light'>
         <%= link_to root_path, class: 'navbar-brand' do %>
-        <%= image_tag 'logo.png', class: 'resize-image'  %>
+        <%= image_tag 'logo.png', alt: 'Logo' %>
         <% end %>
         <button class='navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent'
             aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
@@ -11,27 +11,38 @@
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav ms-auto main-nav align-items-center'>
                 <li class='nav-item dropdown dropdown-slide'>
-                    <%= link_to '投稿', '#', class: 'nav-link dropdown-toggle', data: { bs_toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, id: 'header-board-menu' %>
+                    <%= link_to '#', class: 'nav-link dropdown-toggle', data: { bs_toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, id: 'header-board-menu' do %>
+                    <i class="fas fa-pen-to-square me-1"></i>投稿
+                    <% end %>
                     <div class='dropdown-menu dropdown-menu-end'>
-                        <%= link_to '投稿一覧', boards_path, class: 'dropdown-item' %>
-                        <%= link_to '投稿作成', new_board_path, class: 'dropdown-item' %>
+                        <%= link_to boards_path, class: 'dropdown-item' do %>
+                        <i class="fas fa-list me-2"></i>投稿一覧
+                        <% end %>
+                        <%= link_to new_board_path, class: 'dropdown-item' do %>
+                        <i class="fas fa-plus me-2"></i>投稿作成
+                        <% end %>
                     </div>
                 </li>
 
                 <li class='nav-item'>
-                    <%= link_to '継続期間', '#', class: 'nav-link' %>
+                    <%= link_to '#', class: 'nav-link' do %>
+                    <i class="fas fa-calendar-check me-1"></i>継続期間
+                    <% end %>
                 </li>
 
                 <li class='nav-item dropdown dropdown-slide'>
                     <%= link_to '#', class: 'nav-link', data: { bs_toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, id: 'header-profile' do %>
-                    <%= image_tag 'sample.jpg', class: 'rounded-circle mr15', width: '40', height: '40' %>
+                    <%= image_tag 'sample.jpg', class: 'rounded-circle profile-image', width: '40', height: '40' %>
                     <% end %>
                     <div class='dropdown-menu dropdown-menu-end'>
                         <div class='dropdown-item'><%= current_user.decorate.full_name %></div>
                         <div class='dropdown-divider'></div>
-                        <%= link_to 'プロフィール', '#', class: 'dropdown-item' %>
-                        <%= link_to 'ログアウト', logout_path, class: 'dropdown-item', data: { turbo_method: :delete } %>
-
+                        <%= link_to '#', class: 'dropdown-item' do %>
+                        <i class="fas fa-user me-2"></i>プロフィール
+                        <% end %>
+                        <%= link_to logout_path, class: 'dropdown-item', data: { turbo_method: :delete } do %>
+                        <i class="fas fa-sign-out-alt me-2"></i>ログアウト
+                        <% end %>
                     </div>
                 </li>
             </ul>
