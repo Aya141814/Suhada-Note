@@ -19,7 +19,18 @@
                     <li><i class="bi bi-person"></i><%= board.user.decorate.full_name %></li>
                     <li><i class="bi bi-calendar"></i><%= l board.created_at, format: :short %></li>
                 </ul>
-                <p class="card-text">本文</p>
+                <p class="card-text"><%= board.body %></p>
+                <!-- スキンケアの種類を表示 -->
+                <div class="mt-2">
+                    <strong><i class="bi bi-list-ul"></i> スキンケアの種類:</strong>
+                    <ul class="list-inline">
+                        <% board.skincare_types.each do |skincare_type| %>
+                        <li class="list-inline-item">
+                            <span class="badge bg-primary"><%= skincare_type.name %></span>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

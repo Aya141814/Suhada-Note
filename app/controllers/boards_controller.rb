@@ -5,6 +5,7 @@ class BoardsController < ApplicationController
 
   def new
     @board = Board.new
+    @skincare_types = SkincareType.all
   end
 
   def create
@@ -13,6 +14,7 @@ class BoardsController < ApplicationController
       redirect_to boards_path, success: t("defaults.flash_message.created", item: Board.model_name.human)
     else
       flash.now[:danger] = t("defaults.flash_message.not_created", item: Board.model_name.human)
+      @skincare_types = SkincareType.all
       render :new, status: :unprocessable_entity
     end
   end
@@ -20,6 +22,6 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:title, :body)
+    params.require(:board).permit(:title, :body, skincare_type_ids: [])
   end
 end
