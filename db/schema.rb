@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_02_091307) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_02_134915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "board_skincare_types", force: :cascade do |t|
+    t.bigint "board_id", null: false
+    t.bigint "skincare_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_board_skincare_types_on_board_id"
+    t.index ["skincare_type_id"], name: "index_board_skincare_types_on_skincare_type_id"
+  end
 
   create_table "boards", force: :cascade do |t|
     t.string "title", null: false
@@ -21,6 +30,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_02_091307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
+  create_table "skincare_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,5 +49,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_02_091307) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "board_skincare_types", "boards"
+  add_foreign_key "board_skincare_types", "skincare_types"
   add_foreign_key "boards", "users"
 end
