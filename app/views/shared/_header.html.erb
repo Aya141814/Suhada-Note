@@ -1,51 +1,65 @@
-<header>
-    <nav class='navbar navbar-expand-lg navbar-light'>
-        <%= link_to root_path, class: 'navbar-brand' do %>
-        <%= image_tag 'logo.png', alt: 'Logo' %>
-        <% end %>
-        <button class='navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent'
-            aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
-            <span class='navbar-toggler-icon'></span>
-        </button>
-
-        <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-            <ul class='navbar-nav ms-auto main-nav align-items-center'>
-                <li class='nav-item dropdown dropdown-slide'>
-                    <%= link_to '#', class: 'nav-link dropdown-toggle', data: { bs_toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, id: 'header-board-menu' do %>
-                    <i class="fas fa-pen-to-square me-1"></i>投稿
-                    <% end %>
-                    <div class='dropdown-menu dropdown-menu-end'>
-                        <%= link_to boards_path, class: 'dropdown-item' do %>
-                        <i class="fas fa-list me-2"></i>投稿一覧
-                        <% end %>
-                        <%= link_to new_board_path, class: 'dropdown-item' do %>
-                        <i class="fas fa-plus me-2"></i>投稿作成
+<header class="z-10">
+    <nav class="bg-gray-100">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-end h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <%= link_to '/' do %>
+                        <%# <%= image_tag 'logo.png', class: 'h-8 w-auto' %>
                         <% end %>
                     </div>
-                </li>
-
-                <li class='nav-item'>
-                    <%= link_to '#', class: 'nav-link' do %>
-                    <i class="fas fa-calendar-check me-1"></i>継続期間
-                    <% end %>
-                </li>
-
-                <li class='nav-item dropdown dropdown-slide'>
-                    <%= link_to '#', class: 'nav-link', data: { bs_toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, id: 'header-profile' do %>
-                    <%= image_tag 'sample.jpg', class: 'rounded-circle profile-image', width: '40', height: '40' %>
-                    <% end %>
-                    <div class='dropdown-menu dropdown-menu-end'>
-                        <div class='dropdown-item'><%= current_user.decorate.full_name %></div>
-                        <div class='dropdown-divider'></div>
-                        <%= link_to '#', class: 'dropdown-item' do %>
-                        <i class="fas fa-user me-2"></i>プロフィール
-                        <% end %>
-                        <%= link_to logout_path, class: 'dropdown-item', data: { turbo_method: :delete } do %>
-                        <i class="fas fa-sign-out-alt me-2"></i>ログアウト
-                        <% end %>
+                    <div class="hidden sm:block sm:ml-6">
+                        <div class="flex space-x-4 items-center justify-centers">
+                            <div class="relative group">
+                                <%= link_to '投稿', '#', class: 'text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out', id: 'header-board-menu' %>
+                                <div
+                                    class="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 ease-in-out z-20">
+                                    <%= link_to '投稿一覧', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                    <%= link_to '投稿作成', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                </div>
+                            </div>
+                            <%= link_to '継続期間', '#', class: 'text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out' %>
+                            <div class="relative group">
+                                <%= link_to '#', class: 'flex', id: 'header-profile' do %>
+                                <%= image_tag '/assets/sample.png', class: 'rounded-full h-10 w-10' %>
+                                <!-- サイズを調整 -->
+                                <% end %>
+                                <div
+                                    class="absolute right-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 ease-in-out z-20">
+                                    <div class="px-4 py-2 text-sm text-gray-700">らんてっく たろう</div>
+                                    <div class="border-t border-gray-100"></div>
+                                    <%= link_to 'プロフィール', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                    <%= link_to 'ログアウト', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+                <div class="sm:hidden">
+                    <!-- ハンバーガーメニューボタン -->
+                    <button type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">メニューを開く</span>
+                        <!-- アイコン -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- モバイルメニュー -->
+        <div class="sm:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <%= link_to '投稿', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+                <%= link_to '継続期間', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+                <%= link_to 'プロフィール', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+                <%= link_to 'ログアウト', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+            </div>
         </div>
     </nav>
 </header>

@@ -7,8 +7,3 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-skincare_types = ["化粧水", "クリーム", "美容液", "乳液", "パック" ]
-
-skincare_types.each do |name|
-  SkincareType.find_or_create_by!(name: name)
-end
