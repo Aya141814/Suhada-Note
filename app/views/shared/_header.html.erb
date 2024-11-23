@@ -29,7 +29,8 @@
                                     <div class="px-4 py-2 text-sm text-gray-700">らんてっく たろう</div>
                                     <div class="border-t border-gray-100"></div>
                                     <%= link_to 'プロフィール', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
-                                    <%= link_to 'ログアウト', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                    <%= link_to 'ログアウト', logout_path, class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100', data: { turbo_method: :delete } %>
+
                                 </div>
                             </div>
                         </div>
@@ -58,7 +59,7 @@
                 <%= link_to '投稿', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
                 <%= link_to '継続期間', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
                 <%= link_to 'プロフィール', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
-                <%= link_to 'ログアウト', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+                <%= link_to 'ログアウト', logout_path, class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium', data: { turbo_method: :delete } %>
             </div>
         </div>
     </nav>
