@@ -11,14 +11,14 @@
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex space-x-4 items-center justify-centers">
                             <div class="relative group">
-                                <%= link_to '投稿', '#', class: 'text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out', id: 'header-board-menu' %>
+                                <%= link_to t('header.board'), '#', class: 'text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out', id: 'header-board-menu' %>
                                 <div
                                     class="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 ease-in-out z-20">
-                                    <%= link_to '投稿一覧', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
-                                    <%= link_to '投稿作成', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                    <%= link_to t('header.board_index'), '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                    <%= link_to t('header.create_board'), '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
                                 </div>
                             </div>
-                            <%= link_to '継続期間', '#', class: 'text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out' %>
+                            <%= link_to t('header.duration'), '#', class: 'text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out' %>
                             <div class="relative group">
                                 <%= link_to '#', class: 'flex', id: 'header-profile' do %>
                                 <%= image_tag '/assets/sample.png', class: 'rounded-full h-10 w-10' %>
@@ -28,8 +28,9 @@
                                     class="absolute right-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 ease-in-out z-20">
                                     <div class="px-4 py-2 text-sm text-gray-700">らんてっく たろう</div>
                                     <div class="border-t border-gray-100"></div>
-                                    <%= link_to 'プロフィール', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
-                                    <%= link_to 'ログアウト', '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                    <%= link_to t('header.profile'), '#', class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+                                    <%= link_to t('header.logout'), logout_path, class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100', data: { turbo_method: :delete } %>
+
                                 </div>
                             </div>
                         </div>
@@ -55,10 +56,10 @@
         <!-- モバイルメニュー -->
         <div class="sm:hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <%= link_to '投稿', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
-                <%= link_to '継続期間', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
-                <%= link_to 'プロフィール', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
-                <%= link_to 'ログアウト', '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+                <%= link_to t('header.board'), '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+                <%= link_to t('header.duration'), '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+                <%= link_to t('header.profile'), '#', class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium' %>
+                <%= link_to t('header.logout'), logout_path, class: 'text-gray-700 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium', data: { turbo_method: :delete } %>
             </div>
         </div>
     </nav>
