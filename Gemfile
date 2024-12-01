@@ -25,6 +25,8 @@ gem "tailwindcss-rails"
 # gem "kredis"
 gem "sorcery"
 
+gem "faker"
+
 gem "draper", "4.0.2"
 
 gem "rails-i18n", "~> 7.0.0"
