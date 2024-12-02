@@ -29,7 +29,8 @@ gem "faker"
 
 gem "draper", "4.0.2"
 
-gem "aws-sdk-s3"
+gem "aws-sdk-s3", require: false
+gem "fog-aws"
 
 gem "rails-i18n", "~> 7.0.0"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
