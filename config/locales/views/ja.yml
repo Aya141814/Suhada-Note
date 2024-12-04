@@ -28,3 +28,6 @@ ja:
     create_board: 投稿作成
     duration: 継続期間
     profile: プロフィール
+  boards:
+    new:
+      title: 新規投稿作成
