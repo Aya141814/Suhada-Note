@@ -28,7 +28,7 @@ gem "sorcery"
 gem "faker"
 
 gem "draper", "4.0.2"
-gem "carrierwave", "2.2.2"
+gem "carrierwave", "3.0.7"
 
 gem "aws-sdk-s3", require: false
 gem "fog-aws"
