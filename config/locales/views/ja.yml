@@ -33,3 +33,5 @@ ja:
   boards:
     new:
       title: 新規投稿作成
+  comments:
+    post: 投稿
