@@ -1,6 +1,7 @@
+<% content_for(:title, @board.title) %>
 <div class="container mx-auto px-4 pt-5">
     <div class="max-w-4xl mx-auto mb-6">
-        <h1 class="text-3xl font-bold mb-6"><%= t('.title') %></h1>
+        <h1 class="text-3xl font-bold mb-6"><%= @board.title %></h1>
         <article class="bg-white shadow-md rounded-lg overflow-hidden">
             <div class="p-6">
                 <div class="flex flex-col md:flex-row md:items-start">
