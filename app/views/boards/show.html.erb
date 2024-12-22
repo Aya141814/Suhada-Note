@@ -14,14 +14,16 @@
                             <li class="inline-block mr-4"><%= "by #{@board.user.decorate.full_name}" %></li>
                             <li class="inline-block"><%= l @board.created_at, format: :long %></li>
                         </ul>
+                        <% if current_user.own?(@board) %>
                         <div class='flex justify-end mb-4'>
-                            <%= link_to "#", id: "button-edit-#{@board.id}", class: "text-blue-500 hover:text-blue-700 mr-2" do %>
+                            <%= link_to edit_board_path, id: "button-edit-#{@board.id}", class: "text-gray-600 hover:text-gray-800 mr-2" do %>
                             <i class='fas fa-pencil-alt'></i>
                             <% end %>
-                            <%= link_to "#", id: "button-delete-#{@board.id}", class: "text-red-500 hover:text-red-700" do %>
+                            <%= link_to board_path(@board), id: "button-delete-#{@board.id}", data: { turbo_method: :delete, turbo_confirm: '削除しますか？' }, class: "text-gray-600 hover:text-gray-800" do %>
                             <i class="fas fa-trash-alt"></i>
                             <% end %>
                         </div>
+                        <% end %>
                         <p class="text-gray-700"><%= simple_format(@board.body) %></p>
                     </div>
                 </div>
