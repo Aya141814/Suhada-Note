@@ -28,7 +28,7 @@ gem "sorcery"
 gem "faker"
 gem "pry-byebug", group: :development
 gem "draper", "4.0.2"
-gem "carrierwave", "3.0.7"
+gem "carrierwave", "3.1.0"
 
 gem "aws-sdk-s3", require: false
 gem "fog-aws"
