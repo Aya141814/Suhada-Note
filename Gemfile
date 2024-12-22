@@ -26,7 +26,7 @@ gem "tailwindcss-rails"
 gem "sorcery"
 
 gem "faker"
-
+gem "pry-byebug", group: :development
 gem "draper", "4.0.2"
 gem "carrierwave", "3.0.7"
 

@@ -7,14 +7,16 @@
                     <h4 class="text-xl font-semibold">
                         <%= link_to board.title, board_path(board) , class: "text-blue-600 hover:text-blue-800" %>
                     </h4>
+                    <% if current_user.own?(board) %>
                     <div class="flex space-x-2">
-                        <%= link_to '#', id: "button-edit-#{board.id}", class: "text-gray-600 hover:text-gray-800" do %>
-                        <i class="bi bi-pencil-fill"></i>
+                        <%= link_to edit_board_path(board), id: "button-edit-#{board.id}", class: "text-gray-600 hover:text-gray-800" do %>
+                        <i class='fas fa-pencil-alt'></i>
                         <% end %>
-                        <%= link_to '#', id: "button-delete-#{board.id}", method: :delete, data: {confirm: ''}, class: "text-gray-600 hover:text-gray-800" do %>
-                        <i class="bi bi-trash-fill"></i>
+                        <%= link_to board_path(board), id: "button-delete-#{board.id}", data: { turbo_method: :delete, turbo_confirm: '削除しますか？' }, class: "text-gray-600 hover:text-gray-800" do %>
+                        <i class="fas fa-trash-alt"></i>
                         <% end %>
                     </div>
+                    <% end %>
                 </div>
                 <ul class="flex space-x-4 mt-2 text-sm text-gray-600">
                     <li class="flex items-center"><i class="bi bi-person mr-1"></i><%= board.user.decorate.full_name %>
