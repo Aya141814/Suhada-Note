@@ -30,6 +30,7 @@ ja:
     logout: ログアウト
     board: 投稿
     board_index: 投稿一覧
+    cheer_index: cheer!一覧
     create_board: 投稿作成
     duration: 継続期間
     profile: プロフィール
@@ -42,5 +43,13 @@ ja:
       title: 投稿一覧
     edit:
       title: 投稿編集
+    cheers:
+      title: チア一覧
+      no_result: チアした投稿はありません。
+  cheers:
+    create:
+      success: チアしました
+    destroy:
+      success: チアを解除しました
   comments:
     post: 投稿

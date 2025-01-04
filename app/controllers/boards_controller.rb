@@ -7,6 +7,10 @@ class BoardsController < ApplicationController
     @board = Board.new
   end
 
+  def cheers
+    @cheer_boards = current_user.cheer_boards.includes(:user).order(created_at: :desc)
+  end
+
   def create
     @board =current_user.boards.build(board_params)
     if @board.save

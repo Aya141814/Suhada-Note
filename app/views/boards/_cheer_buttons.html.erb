@@ -1,0 +1,7 @@
+<div class='ms-auto'>
+    <% if current_user.cheer?(board) %>
+    <%= render 'uncheer', { board: board } %>
+    <% else %>
+    <%= render 'cheer', { board: board } %>
+    <% end %>
+</div>
