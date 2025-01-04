@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "cheer-button-for-board-#{@board.id}" do %>
+<%= render 'boards/uncheer', board: @board %>
+<% end %>
