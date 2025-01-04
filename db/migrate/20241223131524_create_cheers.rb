@@ -5,6 +5,6 @@ class CreateCheers < ActiveRecord::Migration[7.2]
       t.references :board, foreign_key: true
       t.timestamps
     end
-    add_index :cheers, [:user_id, :board_id], unique: true
+    add_index :cheers, [ :user_id, :board_id ], unique: true
   end
 end
