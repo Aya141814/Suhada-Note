@@ -1,11 +1,28 @@
 class CommentsController < ApplicationController
   def create
-    comment = current_user.comments.build(comment_params)
-    if comment.save
-      redirect_to board_path(comment.board), success: t("defaults.flash_message.created", item: Comment.model_name.human)
-    else
-      redirect_to board_path(comment.board), danger: t("defaults.flash_message.not_created", item: Comment.model_name.human)
+    @comment = current_user.comments.build(comment_params)
+    @comment.save
+  end
+  def edit
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.turbo_stream
     end
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_params)
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  def destroy
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy!
   end
 
   private
