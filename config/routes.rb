@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :users, only: %i[new create]
   resources :boards, only: %i[index new create show edit destroy update] do
-    resources :comments, only: %i[create edit destroy], shallow: true
+    resources :comments, only: %i[create edit update destroy], shallow: true
     collection do
       get :cheers
     end
