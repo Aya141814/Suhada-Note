@@ -3,7 +3,7 @@
     class="bg-white shadow-sm rounded-lg p-4 mb-4 hover:shadow-md transition duration-300">
     <div class="flex items-start space-x-4">
         <div class="flex-shrink-0">
-            <%= image_tag "sample", class: "w-10 h-10 rounded-full object-cover" %>
+            <%= image_tag comment.user.avatar.url, class: "w-10 h-10 rounded-full object-cover" if comment.user.avatar.present? %>
         </div>
         <div class="flex-grow">
             <div class="flex justify-between items-start">
