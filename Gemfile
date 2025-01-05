@@ -24,7 +24,7 @@ gem "tailwindcss-rails"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 gem "sorcery"
-
+gem "meta-tags"
 gem "faker"
 gem "pry-byebug", group: :development
 gem "draper", "4.0.2"
