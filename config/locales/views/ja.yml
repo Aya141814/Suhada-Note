@@ -54,3 +54,8 @@ ja:
       success: チアを解除しました
   comments:
     post: 投稿
+  profiles:
+    show:
+      title: プロフィール
+    edit:
+      title: プロフィール編集
