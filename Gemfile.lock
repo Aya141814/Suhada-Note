@@ -176,6 +176,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
+    high_voltage (4.0.0)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     image_processing (1.13.0)
@@ -435,6 +436,7 @@ DEPENDENCIES
   draper (= 4.0.2)
   faker
   fog-aws
+  high_voltage
   jbuilder
   jsbundling-rails
   meta-tags
