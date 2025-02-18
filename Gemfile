@@ -29,7 +29,6 @@ gem "faker"
 gem "pry-byebug", group: :development
 gem "draper", "4.0.2"
 gem "carrierwave", "3.1.0"
-
 gem "aws-sdk-s3", require: false
 gem "fog-aws"
 
@@ -43,7 +42,6 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem "high_voltage"
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

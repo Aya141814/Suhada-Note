@@ -1,0 +1,11 @@
+<h1><%= params[:category_name] || 'スキンケア' %> の継続記録</h1>
+
+<p>現在の継続日数: <strong><%= @streak.current_streak %></strong> 日</p>
+<p>最後に記録した日: <%= @streak.last_post_date || 'まだ記録がありません' %></p>
+
+<div>
+    <%= link_to '新しい記録を作成', new_board_path(category_name: params[:category_name]), class: 'btn btn-primary' %>
+</div>
+<div>
+    <%= link_to 'ホームに戻る', root_path, class: 'btn btn-secondary' %>
+</div>

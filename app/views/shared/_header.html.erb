@@ -19,7 +19,11 @@
                                     <%= link_to t('header.create_board'), new_board_path, class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
                                 </div>
                             </div>
-                            <%= link_to t('header.duration'), '#', class: 'text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out' %>
+                            <% if @streak.present? %>
+                            <%= link_to t('header.duration'), streak_path(@streak), class: 'text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out' %>
+                            <% else %>
+                            <span class="text-gray-500">記録を投稿して継続期間を記録しよう！</span>
+                            <% end %>
                             <div class="relative group">
                                 <%= link_to '#', class: 'flex', id: 'header-profile' do %>
                                 <%= image_tag current_user.avatar_url, class: 'rounded-full h-10 w-10' %>
