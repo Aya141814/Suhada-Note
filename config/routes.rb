@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :cheers
     end
   end
+  resource :streak, only: %i[show]
   resources :cheers, only: %i[create destroy]
   get "login", to: "user_sessions#new"
   post "login", to: "user_sessions#create"
