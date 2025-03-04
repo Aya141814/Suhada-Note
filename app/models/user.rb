@@ -39,7 +39,7 @@ class User < ApplicationRecord
   def current_streak_for(category_name)
     streak = streak_for_category(category_name)
     {
-      count: streak.display_streak,
+      count: streak.active? ? streak.display_streak : 0,
       active: streak.active?,
       days_since_last: streak.days_since_last_post
     }

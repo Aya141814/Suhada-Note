@@ -25,13 +25,14 @@ class Streak < ApplicationRecord
 
   # 最終投稿日からの経過日数を計算
   def days_since_last_post
-    return 0 if end_date.nil?
-    (Date.today - end_date).to_i
+    return nil if end_date.nil?
+    (Date.current - end_date).to_i
   end
 
   # 継続中かどうかを判定
   def active?
-    days_since_last_post <= 1
+    return false if end_date.nil?
+    (Date.current - end_date).to_i <= 1
   end
 
   private
