@@ -4,8 +4,14 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  title: テスト投稿1
+  body: これはテスト投稿1です。
+  user: one
+  category_name: スキンケア
+
+two:
+  title: テスト投稿2
+  body: これはテスト投稿2です。
+  user: two
+  category_name: スキンケア
