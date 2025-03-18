@@ -33,6 +33,7 @@ gem "aws-sdk-s3", require: false
 gem "fog-aws"
 
 gem "rails-i18n", "~> 7.0.0"
+gem "jwt"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 

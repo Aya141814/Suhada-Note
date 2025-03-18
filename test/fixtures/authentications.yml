@@ -5,12 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  user: one
-  board: one
-  body: これはテストコメントです。
-
+  user_id: 1
+  provider: google
+  uid: test_uid_1
+# column: value
+#
 two:
-  user: two
-  board: two
-  body: これは別のテストコメントです。
+  user_id: 2
+  provider: google
+  uid: test_uid_2
 # column: value
