@@ -8,6 +8,10 @@ class Board < ApplicationRecord
   belongs_to :user
   mount_uploader :board_image, BoardImageUploader
 
+  # スキンケアアイテムを配列として扱う
+  serialize :skincare_items, coder: YAML
+  after_initialize :set_default_skincare_items, if: :new_record?
+
   after_create :update_streak
 
   private
@@ -15,5 +19,9 @@ class Board < ApplicationRecord
   def update_streak
     streak = user.streak_for_category(category_name)
     streak.record_activity
+  end
+
+  def set_default_skincare_items
+    self.skincare_items ||= []
   end
 end

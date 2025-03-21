@@ -24,6 +24,17 @@
                             <% end %>
                         </div>
                         <% end %>
+                        <% if @board.category_name == 'スキンケア' && @board.skincare_items.present? %>
+                        <div class="mb-4">
+                            <h4 class="text-md font-semibold mb-2">使用したスキンケアアイテム:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <% @board.skincare_items.each do |item| %>
+                                <span
+                                    class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full"><%= item %></span>
+                                <% end %>
+                            </div>
+                        </div>
+                        <% end %>
                         <p class="text-gray-700"><%= simple_format(@board.body) %></p>
                     </div>
                 </div>
