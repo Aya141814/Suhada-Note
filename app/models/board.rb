@@ -10,7 +10,11 @@ class Board < ApplicationRecord
 
   # スキンケアアイテムを配列として扱う
   serialize :skincare_items, coder: YAML
+  # 肌トラブルを配列として扱う
+  serialize :skin_troubles, coder: YAML
+  
   after_initialize :set_default_skincare_items, if: :new_record?
+  after_initialize :set_default_skin_troubles, if: :new_record?
 
   after_create :update_streak
 
@@ -23,5 +27,9 @@ class Board < ApplicationRecord
 
   def set_default_skincare_items
     self.skincare_items ||= []
+  end
+  
+  def set_default_skin_troubles
+    self.skin_troubles ||= []
   end
 end
