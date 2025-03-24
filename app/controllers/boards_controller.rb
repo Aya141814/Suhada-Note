@@ -48,6 +48,6 @@ end
   private
 
   def board_params
-    params.require(:board).permit(:title, :body, :board_image, :board_image_cache, :category_name, skincare_items: [], skin_troubles: [])
+    params.require(:board).permit(:title, :body, :board_image, :board_image_cache, skincare_items: [], skin_troubles: [])
   end
 end

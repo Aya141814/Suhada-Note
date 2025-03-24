@@ -25,7 +25,7 @@
                         </div>
                         <% end %>
                         <!--スキンケアアイテム-->
-                        <% if @board.category_name == 'スキンケア' && @board.skincare_items.present? %>
+                        <% if @board.skincare_items.present? %>
                         <div class="mb-4">
                             <h4 class="text-md font-semibold mb-2">使用したスキンケアアイテム:</h4>
                             <div class="flex flex-wrap gap-2">
@@ -37,7 +37,7 @@
                         </div>
                         <% end %>
 
-                        <% if @board.category_name == 'スキンケア' && @board.skin_troubles.present? %>
+                        <% if @board.skin_troubles.present? %>
                         <div class="mb-4">
                             <h4 class="text-md font-semibold mb-2">悩んでいる肌トラブル:</h4>
                             <div class="flex flex-wrap gap-2">

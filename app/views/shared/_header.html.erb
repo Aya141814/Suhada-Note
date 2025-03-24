@@ -22,7 +22,7 @@
                             <% if current_user %>
                             <div class="flex items-center gap-4">
                                 <%= link_to streak_path, class: "text-sm hover:bg-gray-200 px-3 py-2 rounded-md transition duration-300 ease-in-out" do %>
-                                <% streak_info = current_user.current_streak_for('スキンケア') %>
+                                <% streak_info = current_user.current_streak %>
                                 <span
                                     class="<%= streak_info[:active] ? 'text-green-600' : 'text-gray-500' %> font-semibold">
                                     <%= streak_info[:count] %>日連続投稿中
