@@ -1,6 +1,5 @@
 class Streak < ApplicationRecord
   belongs_to :user
-  validates :category_name, presence: true, uniqueness: { scope: :user_id }
   validates :current_streak, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   # デフォルト値の設定

@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :cheers, dependent: :destroy
   has_many :cheer_boards, through: :cheers, source: :board
-  has_many :streaks, dependent: :destroy
+  has_one :streak, dependent: :destroy
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
@@ -33,18 +33,30 @@ class User < ApplicationRecord
     cheer_boards.include?(board)
   end
 
-  def streak_for_category(category_name)
-    streaks.find_or_create_by(category_name: category_name)
+  # ユーザーのデフォルトストリークを取得（または作成）
+  def default_streak
+    streak || create_streak
   end
 
-  # 特定のカテゴリーの継続記録を取得
-  def current_streak_for(category_name)
-    streak = streak_for_category(category_name)
+  # 継続記録を取得
+  def current_streak
+    streak = default_streak
     {
+      # 三項演算子で「条件式 ? 真の場合の値 : 偽の場合の値」を返すもの
       count: streak.active? ? streak.display_streak : 0,
       active: streak.active?,
       days_since_last: streak.days_since_last_post
     }
+  end
+
+  # 後方互換性のために残しておく（deprecated）
+  def streak_for_category(_category_name = nil)
+    default_streak
+  end
+
+  # 後方互換性のために残しておく（deprecated）
+  def current_streak_for(_category_name = nil)
+    current_streak
   end
 
   # ユーザーの表示名を返す

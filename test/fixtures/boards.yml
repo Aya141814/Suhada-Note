@@ -8,10 +8,8 @@ one:
   title: テスト投稿1
   body: これはテスト投稿1です。
   user: one
-  category_name: スキンケア
 
 two:
   title: テスト投稿2
   body: これはテスト投稿2です。
   user: two
-  category_name: スキンケア
