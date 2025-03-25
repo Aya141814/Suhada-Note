@@ -42,7 +42,7 @@ class User < ApplicationRecord
   def current_streak
     streak = default_streak
     {
-      #三項演算子で「条件式 ? 真の場合の値 : 偽の場合の値」を返すもの
+      # 三項演算子で「条件式 ? 真の場合の値 : 偽の場合の値」を返すもの
       count: streak.active? ? streak.display_streak : 0,
       active: streak.active?,
       days_since_last: streak.days_since_last_post
