@@ -9,11 +9,9 @@ one:
   start_date: <%= Date.today %>
   end_date:
   current_streak: 1
-  category_name: スキンケア
 
 two:
   user: two
   start_date: <%= Date.today %>
   end_date:
   current_streak: 1
-  category_name: スキンケア
