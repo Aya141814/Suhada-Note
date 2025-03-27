@@ -16,7 +16,7 @@
             <!-- 掲示板一覧 -->
             <div class="row">
                 <div class="col-12">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div class="grid grid-cols-1 max-w-2xl mx-auto">
                         <% if @boards.present? %>
                         <%= render @boards %>
                         <% else %>
