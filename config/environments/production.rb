@@ -97,7 +97,14 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts << "www.suhada-note.com"
+  # 個別のホスト名を追加
+  # config.hosts << "www.suhada-note.com"
+  # config.hosts << "suhada-note.com"
+  
+  # suhada-note.comとそのすべてのサブドメインを許可（より簡潔な設定）
+  config.hosts << /.*\.suhada-note\.com/
+  config.hosts << "suhada-note.com"
+  
   #   "example.com",     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]
