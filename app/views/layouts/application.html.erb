@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="retro">
 
 <head>
   <title><%= content_for(:title) || "Skin Care Cheer" %></title>
@@ -21,7 +21,7 @@
   <%= display_meta_tags(default_meta_tags) %>
 </head>
 
-<body class="bg-custom-white min-h-screen">
+<body class="min-h-screen">
   <% if logged_in? %>
   <%= render 'shared/header' %>
   <% else %>

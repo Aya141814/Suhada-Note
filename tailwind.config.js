@@ -6,11 +6,19 @@ module.exports = {
     './app/javascript/**/*.js'
   ],
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark", "retro"], // より一般的なテーマも含めるように変更
+    darkTheme: "dark",
+    base: true,
+    styled: true,
+    utils: true,
+    prefix: "",
+    logs: true,
+    themeRoot: ":root",
+  },
   theme: {
     extend: {
-      backgroundColor: {
-        'custom-white': '#ffffff', // 白色を追加
-      },
-    },
-  },
+      // カスタムカラーが必要な場合はここに追加
+    }
+  }
 }
