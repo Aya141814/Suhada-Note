@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
     # 許可されたページリスト（必要に応じて拡張）
     allowed_pages = %w[terms]
-  
+
     unless allowed_pages.include?(page)
       raise ActionController::RoutingError.new("Not Found")
     end
@@ -21,4 +21,4 @@ class PagesController < ApplicationController
     # テンプレートのレンダリング
     render template: "pages/#{page}"
   end
-end 
+end
