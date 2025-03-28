@@ -7,7 +7,7 @@ module.exports = {
   ],
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark", "retro", "cupcake"], // より一般的なテーマも含めるように変更
+    themes: ["light", "dark", "retro"], // より一般的なテーマも含めるように変更
     darkTheme: "dark",
     base: true,
     styled: true,
