@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html data-theme="retro">
+<html data-theme="cupcake">
 
 <head>
-  <title><%= content_for(:title) || "Skin Care Cheer" %></title>
+  <title><%= content_for(:title) || "Suhada Note" %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
@@ -11,10 +11,8 @@
 
   <%= yield :head %>
 
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/icon.png" type="image/png">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/icon.png">
+  <%# <link rel="manifest" href="/manifest.json"> %>
+  <%= favicon_link_tag asset_path('favicon.ico') %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
@@ -22,15 +20,111 @@
 </head>
 
 <body class="min-h-screen">
-  <% if logged_in? %>
-  <%= render 'shared/header' %>
-  <% else %>
-  <%= render 'shared/before_login_header' %>
-  <% end %>
-  <%= render 'shared/flash_message' %>
-  <%# <body class="bg-orange-600"> %>
-  <%= yield %>
-  <%= render 'shared/footer' %>
+  <!-- daisyUIのドロワーコンポーネント -->
+  <div class="drawer">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+
+    <!-- ページコンテンツ -->
+    <div class="drawer-content">
+      <!-- ヘッダー -->
+      <% if logged_in? %>
+      <header class="sticky top-0 z-10 shadow-md bg-base-100">
+        <div class="navbar">
+          <div class="flex-none">
+            <label for="my-drawer" class="btn btn-square btn-ghost drawer-button lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="inline-block w-5 h-5 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+              </svg>
+            </label>
+          </div>
+          <div class="flex-1">
+            <%= link_to "Suhada Note", root_path, class: "text-xl font-bold" %>
+          </div>
+          <div class="flex-none hidden lg:block">
+            <ul class="menu menu-horizontal px-1">
+              <li><%= link_to t('header.board_index'), boards_path %></li>
+              <li><%= link_to t('header.cheer_index'), cheers_boards_path %></li>
+              <li><%= link_to t('header.create_board'), new_board_path %></li>
+              <% if current_user %>
+              <li>
+                <%= link_to streak_path do %>
+                <% streak_info = current_user.current_streak %>
+                <span
+                  class="<%= streak_info[:active] ? 'text-success' : 'text-base-content opacity-70' %> font-semibold">
+                  <%= streak_info[:count] %>日連続投稿中
+                  <% unless streak_info[:active] %>
+                  （記録を投稿しよう！）
+                  <% end %>
+                </span>
+                <% end %>
+              </li>
+              <li>
+                <details>
+                  <summary>
+                    <%= image_tag current_user.avatar_url, class: 'rounded-full h-8 w-8' %>
+                  </summary>
+                  <ul class="p-2 bg-base-100 rounded-t-none">
+                    <li><span class="text-sm"><%= current_user.decorate.full_name %></span></li>
+                    <li><%= link_to t('header.profile'), profile_path %></li>
+                    <li><%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %></li>
+                  </ul>
+                </details>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <% else %>
+      <%= render 'shared/before_login_header' %>
+      <% end %>
+
+      <%= render 'shared/flash_message' %>
+
+      <!-- メインコンテンツ -->
+      <main class="container mx-auto px-4 py-6">
+        <%= yield %>
+      </main>
+
+      <%= render 'shared/footer' %>
+    </div>
+
+    <!-- サイドメニュー（ドロワー） -->
+    <div class="drawer-side">
+      <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+      <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+        <!-- モバイル用サイドメニュー -->
+        <% if logged_in? %>
+        <li class="menu-title">メニュー</li>
+        <li><%= link_to t('header.board_index'), boards_path %></li>
+        <li><%= link_to t('header.cheer_index'), cheers_boards_path %></li>
+        <li><%= link_to t('header.create_board'), new_board_path %></li>
+
+        <li class="menu-title">ユーザー</li>
+        <li><%= link_to t('header.profile'), profile_path %></li>
+        <li><%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %></li>
+
+        <li class="mt-4">
+          <%= link_to streak_path, class: "flex items-center" do %>
+          <% streak_info = current_user.current_streak %>
+          <span class="<%= streak_info[:active] ? 'text-success' : 'text-base-content opacity-70' %> font-semibold">
+            <%= streak_info[:count] %>日連続投稿中
+            <% unless streak_info[:active] %>
+            （記録を投稿しよう！）
+            <% end %>
+          </span>
+          <% end %>
+        </li>
+        <% else %>
+        <li class="menu-title">メニュー</li>
+        <li><%= link_to t('header.login'), login_path %></li>
+        <li><%= link_to t('defaults.terms'), page_path('terms') %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </body>
 
 </html>

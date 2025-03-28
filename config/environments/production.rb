@@ -97,7 +97,31 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
+  # 個別のホスト名を追加
+  # config.hosts << "www.suhada-note.com"
+  # config.hosts << "suhada-note.com"
+  
+  # suhada-note.comとそのすべてのサブドメインを許可（より簡潔な設定）
+  config.hosts << "suhada-note.com"
   config.hosts << "www.suhada-note.com"
+  # 実際にアクセスされるホスト名を確認してから、以下のような明示的な設定を行うことをお勧めします
+  # config.hosts << "サーバーのIPアドレス"  # 必要な場合
+  # config.hosts << "実際の本番ホスト名"    # 必要な場合
+  
+  # デバッグ用：アクセスされるホスト名をログに記録
+  Rails.application.config.middleware.insert_before 0, Rack::Runtime do
+    Class.new do
+      def initialize(app)
+        @app = app
+      end
+      
+      def call(env)
+        Rails.logger.info "Request host: #{env['HTTP_HOST']}, SERVER_NAME: #{env['SERVER_NAME']}"
+        @app.call(env)
+      end
+    end
+  end
+  
   #   "example.com",     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]

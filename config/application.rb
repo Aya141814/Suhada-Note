@@ -24,5 +24,8 @@ module Myapp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # すべての環境で suhada-note.com を許可
+    config.hosts << "suhada-note.com" unless Rails.env.production? # 本番環境では既に設定済み
   end
 end
