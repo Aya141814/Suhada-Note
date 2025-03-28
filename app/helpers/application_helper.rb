@@ -24,9 +24,19 @@ module ApplicationHelper
     },
     twitter: {
       card: "summary_large_image",
-      site: "@obvyamdrss",
+      site: "@Aya12669607",
       image: image_url("ogp.png")
     }
   }
+  end
+
+  private
+
+  def base_url
+    if Rails.env.production?
+      "https://#{request.host}"  # 本番環境では実際のホスト名を使用
+    else
+      "#{request.protocol}#{request.host_with_port}"  # 開発環境では現在のホスト名とポートを使用
+    end
   end
 end
