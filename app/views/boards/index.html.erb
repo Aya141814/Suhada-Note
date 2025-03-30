@@ -20,6 +20,7 @@
                         <%= link_to "+ 新規投稿", new_board_path, class: "btn btn-primary" %>
                         <% if @boards.present? %>
                         <%= render @boards %>
+                        <%= paginate @boards %>
                         <% else %>
                         <div class="mb-3">掲示板がありません</div>
                         <% end %>

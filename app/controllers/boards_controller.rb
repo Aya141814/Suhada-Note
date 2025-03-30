@@ -1,6 +1,8 @@
 class BoardsController < ApplicationController
   def index
-    @boards = Board.includes(:user).order(created_at: :desc)
+    @boards = Board.includes(:user)
+              .order(created_at: :desc)
+              .page(params[:page])
   end
 
   def new

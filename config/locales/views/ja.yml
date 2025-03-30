@@ -8,6 +8,7 @@ ja:
       deleted: "%{item}を削除しました"
       require_login: ログインしてください
     delete_confirm: 削除しますか？
+    terms: 利用規約
   helpers:
     submit:
       create: 登録
@@ -59,3 +60,10 @@ ja:
       title: プロフィール
     edit:
       title: プロフィール編集
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      previous: "&lsaquo; 前へ"
+      next: "次へ &rsaquo;"
+      last: "最後 &raquo;"
+      truncate: "&hellip;"

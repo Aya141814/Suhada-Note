@@ -31,7 +31,7 @@ gem "draper", "4.0.2"
 gem "carrierwave", "3.1.0"
 gem "aws-sdk-s3", require: false
 gem "fog-aws"
-
+gem "kaminari"
 gem "rails-i18n", "~> 7.0.0"
 gem "jwt"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
