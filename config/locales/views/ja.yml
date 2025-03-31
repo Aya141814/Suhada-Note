@@ -9,6 +9,8 @@ ja:
       require_login: ログインしてください
     delete_confirm: 削除しますか？
     terms: 利用規約
+    message:
+      sent_reset_password_instructions: パスワードリセットのためのメールを送信しました
   helpers:
     submit:
       create: 登録
@@ -67,3 +69,8 @@ ja:
       next: "次へ &rsaquo;"
       last: "最後 &raquo;"
       truncate: "&hellip;"
+  password_resets:
+    new:
+      title: パスワードリセット申請
+    edit:
+      title: パスワードリセット
