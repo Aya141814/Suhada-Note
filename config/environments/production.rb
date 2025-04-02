@@ -15,6 +15,7 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
+  config.action_mailer.default_url_options = Settings.default_url_options.to_h
 
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
   # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
@@ -100,31 +101,42 @@ Rails.application.configure do
   # 個別のホスト名を追加
   # config.hosts << "www.suhada-note.com"
   # config.hosts << "suhada-note.com"
-  
-  # suhada-note.comとそのすべてのサブドメインを許可（より簡潔な設定）
   config.hosts << "suhada-note.com"
   config.hosts << "www.suhada-note.com"
   # 実際にアクセスされるホスト名を確認してから、以下のような明示的な設定を行うことをお勧めします
   # config.hosts << "サーバーのIPアドレス"  # 必要な場合
   # config.hosts << "実際の本番ホスト名"    # 必要な場合
-  
+
   # デバッグ用：アクセスされるホスト名をログに記録
   Rails.application.config.middleware.insert_before 0, Rack::Runtime do
     Class.new do
       def initialize(app)
         @app = app
       end
-      
+
       def call(env)
         Rails.logger.info "Request host: #{env['HTTP_HOST']}, SERVER_NAME: #{env['SERVER_NAME']}"
         @app.call(env)
       end
     end
   end
-  
+
   #   "example.com",     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # メール送信の設定
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.gmail.com",
+    port:                 587,
+    domain:               "suhada-note.com",  # あなたのドメイン名
+    user_name:            ENV["GMAIL_USERNAME"],
+    password:             ENV["GMAIL_PASSWORD"],
+    authentication:       "plain",
+    enable_starttls_auto: true
+  }
 end

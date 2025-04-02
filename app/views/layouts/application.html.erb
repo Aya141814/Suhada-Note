@@ -19,13 +19,13 @@
   <%= display_meta_tags(default_meta_tags) %>
 </head>
 
-<body class="min-h-screen">
+<body class="flex flex-col min-h-screen">
   <!-- daisyUIのドロワーコンポーネント -->
   <div class="drawer">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
 
     <!-- ページコンテンツ -->
-    <div class="drawer-content">
+    <div class="drawer-content flex flex-col min-h-screen">
       <!-- ヘッダー -->
       <% if logged_in? %>
       <header class="sticky top-0 z-10 shadow-md bg-base-100">
@@ -84,7 +84,7 @@
       <%= render 'shared/flash_message' %>
 
       <!-- メインコンテンツ -->
-      <main class="container mx-auto px-4 py-6">
+      <main class="flex-grow">
         <%= yield %>
       </main>
 
@@ -92,7 +92,7 @@
     </div>
 
     <!-- サイドメニュー（ドロワー） -->
-    <div class="drawer-side">
+    <div class=" drawer-side">
       <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
         <!-- モバイル用サイドメニュー -->
