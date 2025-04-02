@@ -18,6 +18,6 @@ end
 class ActionDispatch::IntegrationTest
   # テスト用にログインを模倣するヘルパーメソッド
   def login_user(user)
-    post login_path, params: { email: user.email, password: 'password123' }
+    post login_path, params: { email: user.email, password: "password123" }
   end
 end

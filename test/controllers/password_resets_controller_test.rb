@@ -29,8 +29,8 @@ class PasswordResetsControllerTest < ActionDispatch::IntegrationTest
   test "should patch update" do
     # 有効なトークンが必要
     skip "有効なリセットトークンが必要なためスキップします"
-    patch password_reset_path("test_token"), params: { 
-      user: { 
+    patch password_reset_path("test_token"), params: {
+      user: {
         password: "new_password",
         password_confirmation: "new_password"
       }
