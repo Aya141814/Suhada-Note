@@ -7,21 +7,7 @@
         <%= form_with model: @board, class: "space-y-6" do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
-        <div class="form-control mb-4">
-            <label class="label">
-                <span class="label-text font-medium">公開設定</span>
-            </label>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <label class="flex items-center gap-2 cursor-pointer">
-                    <%= f.radio_button :is_public, true, class: "radio radio-success" %>
-                    <span class="text-success">公開</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                    <%= f.radio_button :is_public, false, class: "radio radio-error" %>
-                    <span class="text-error">非公開</span>
-                </label>
-            </div>
-        </div>
+        <%= render "boards/public_config", f: f %>
 
         <div>
             <%= f.label :title, class: "block text-sm font-medium text-gray-700 mb-1" %>
