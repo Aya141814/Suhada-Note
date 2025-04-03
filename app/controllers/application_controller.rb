@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   add_flash_types :info, :success, :warning, :error
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, error: exception.message || '権限がありません'
+  end
+
   private
 
   def not_authenticated

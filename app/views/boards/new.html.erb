@@ -5,6 +5,21 @@
             <%= form_with model: @board, class: "space-y-6", local: true, html: { multipart: true } do |f| %>
             <div>
                 <%= render "shared/error_messages", object: f.object %>
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text font-medium">公開設定</span>
+                    </label>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <%= f.radio_button :is_public, true, class: "radio radio-success" %>
+                            <span class="text-success">公開</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <%= f.radio_button :is_public, false, class: "radio" %>
+                            <span class="text-neutral">非公開</span>
+                        </label>
+                    </div>
+                </div>
                 <%= f.label :title, class: "block text-sm font-medium text-gray-700 mb-1" %>
                 <%= f.text_field :title, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
             </div>

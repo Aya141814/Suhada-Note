@@ -1,10 +1,10 @@
 class BoardsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     # ページ番号が正しく指定されていればその番号を表示する
-    page_param = params[:page].to_i.positive? ? params[:page].to_i : 1
-    @boards = Board.includes(:user)
-              .order(created_at: :desc)
-              .page(page_param)
+    @boards = @boards.order(created_at: :desc)
+    .page(params[:page])
   end
 
   def new
@@ -52,6 +52,6 @@ end
   private
 
   def board_params
-    params.require(:board).permit(:title, :body, :board_image, :board_image_cache, skincare_items: [], skin_troubles: [])
+    params.require(:board).permit(:title, :body, :board_image, :board_image_cache, :is_public, skincare_items: [], skin_troubles: [])
   end
 end
