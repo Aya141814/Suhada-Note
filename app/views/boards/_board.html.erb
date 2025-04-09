@@ -49,7 +49,8 @@
                     <% end %>
                 </div>
                 <%# ここまでレイアウト自動で寄せてくれる %>
-                <p class="mt-2"><%= board.body %></p>
+                <%# 本文 %>
+                <p><%= link_to board.body, board_path(board), class: "board-content-link" %></p>
             </div>
         </div>
     </div>
