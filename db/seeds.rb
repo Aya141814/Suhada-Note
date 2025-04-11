@@ -7,17 +7,15 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-10.times do
-  User.create!(last_name: Faker::Name.last_name,
-              first_name: Faker::Name.first_name,
-              email: Faker::Internet.unique.email,
-              password: "password",
-              password_confirmation: "password")
+puts "標準のseed実行: Rakeタスクを呼び出します..."
+
+# Rakeタスクを実行
+if Rails.env.production?
+  # 本番環境では共通データのみ
+  Rake::Task["db:seed:common"].invoke
+else
+  # 開発環境ではすべてのデータ
+  Rake::Task["db:seed:all"].invoke
 end
 
-user_ids = User.ids
-
-20.times do |index|
-  user = User.find(user_ids.sample)
-  user.boards.create!(body: "本文#{index}")
-end
+puts "seed処理が完了しました"

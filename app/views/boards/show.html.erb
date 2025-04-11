@@ -39,29 +39,29 @@
                         <!--スキンケアアイテム-->
                         <% if @board.skincare_items.present? %>
                         <div class="mb-4">
-                            <h4 class="text-md font-semibold mb-2">使用したスキンケアアイテム:</h4>
+                            <h4 class="text-sm font-semibold mb-2">スキンケアアイテム:</h4>
                             <div class="flex flex-wrap gap-2">
-                                <% @board.skincare_items.each do |item| %>
-                                <span
-                                    class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full"><%= item %></span>
+                                <% @board.skincare_items.each do |skincare_item| %>
+                                <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1
+                                    rounded-full"><%= skincare_item.name %></span>
                                 <% end %>
                             </div>
                         </div>
                         <% end %>
-
+                        <!--肌トラブル-->
                         <% if @board.skin_troubles.present? %>
                         <div class="mb-4">
-                            <h4 class="text-md font-semibold mb-2">悩んでいる肌トラブル:</h4>
+                            <h4 class="text-sm font-semibold mb-2">肌トラブル:</h4>
                             <div class="flex flex-wrap gap-2">
-                                <% @board.skin_troubles.each do |trouble| %>
-                                <span
-                                    class="inline-block bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded-full"><%= trouble %></span>
+                                <% @board.skin_troubles.each do |skin_trouble| %>
+                                <span class="inline-block bg-pink-100 text-pink-800 text-xs px-2 py-1
+                                    rounded-full"><%= skin_trouble.name %></span>
                                 <% end %>
                             </div>
                         </div>
                         <% end %>
-
                         <p class="text-gray-700"><%= simple_format(@board.body) %></p>
+
                     </div>
                 </div>
             </div>
