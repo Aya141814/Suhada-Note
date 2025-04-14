@@ -5,11 +5,9 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  title: テスト投稿1
   body: これはテスト投稿1です。
   user: one
 
 two:
-  title: テスト投稿2
   body: これはテスト投稿2です。
   user: two

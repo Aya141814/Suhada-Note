@@ -1,16 +1,40 @@
 <div class="w-full px-4 mb-8">
     <div id="board-id-<%= board.id %>">
+        <%# ここからカード設定 %>
         <div class="card bg-base-100 shadow-md border border-base-300">
+            <% if board.board_image.present? %>
             <figure>
                 <%= image_tag board.board_image_url, class: "w-full h-48 object-cover", width: "300", height:"200" %>
             </figure>
-
+            <% end %>
+            <%# 画像の表示ここまで %>
             <div class="card-body">
+                <%# ここからカードの中身の表示 %>
                 <div class="flex justify-between items-center">
-                    <h2 class="card-title">
-                        <%= link_to board.title, board_path(board), class: "link link-hover text-primary" %>
-                    </h2>
-
+                    <%# アバター %>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full overflow-hidden mr-2 flex-shrink-0">
+                            <%= image_tag board.user.avatar_url, class: "rounded-full", width: 50, height: 50 %>
+                        </div>
+                        <%# 名前と日付 %>
+                        <div class="flex flex-col justify-center overflow-hidden">
+                            <%= link_to board_path(board), class: "text-[12px] sm:text-[14px] truncate max-w-[160px] sm:max-w-[200px] inline-flex items-center gap-1" do %>
+                            <%= board.user.decorate.full_name %>
+                            <% if board.is_public %>
+                            <span class="text-xs ml-2 text-gray-500">
+                                <i class="fas fa-eye text-sm"></i>
+                            </span>
+                            <% else %>
+                            <span class="text-xs ml-2 text-gray-500">
+                                <i class="fas fa-eye-slash text-sm"></i>
+                            </span>
+                            <% end %>
+                            <% end %>
+                            <p class="text-xs text-subtleText pl-0.5"><i class="fas fa-calendar-week"></i>
+                                <%= l board.created_at, format: :short %></p>
+                        </div>
+                    </div>
+                    <%# ここからボタン設定（ここは変えたくない） %>
                     <% if current_user.own?(board) %>
                     <div class="flex gap-2">
                         <%= link_to edit_board_path(board), id: "button-edit-#{board.id}", class: "btn btn-ghost btn-circle btn-sm" do %>
@@ -24,15 +48,35 @@
                     <%= render "cheer_buttons", {board: board} %>
                     <% end %>
                 </div>
-
-                <div class="flex gap-4 mt-2 text-sm text-opacity-70">
-                    <span class="flex items-center"><i
-                            class="bi bi-person mr-1"></i><%= board.user.decorate.full_name %></span>
-                    <span class="flex items-center"><i
-                            class="bi bi-calendar mr-1"></i><%= l board.created_at, format: :short %></span>
+                <%# スキンケアアイテム %>
+                <% if board.skincare_items.present? %>
+                <div class="mb-4">
+                    <h4 class="text-sm font-semibold mb-2">スキンケアアイテム:</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <% board.skincare_items.each do |skincare_item| %>
+                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1
+                                    rounded-full"><%= skincare_item.name %></span>
+                        <% end %>
+                    </div>
                 </div>
+                <% end %>
+                <%# 肌トラブル %>
+                <% if board.skin_troubles.present? %>
+                <div class="mb-4">
+                    <h4 class="text-sm font-semibold mb-2">肌トラブル:</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <% board.skin_troubles.each do |skin_trouble| %>
+                        <span
+                            class="inline-block bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded-full"><%= skin_trouble.name %></span>
+                        <% end %>
+                    </div>
+                </div>
+                <% end %>
 
-                <p class="mt-2"><%= board.body %></p>
+
+                <%# ここまでレイアウト自動で寄せてくれる %>
+                <%# 本文 %>
+                <p><%= link_to board.body, board_path(board), class: "board-content-link" %></p>
             </div>
         </div>
     </div>

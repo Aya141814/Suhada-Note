@@ -7,6 +7,7 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       require_login: ログインしてください
+      trophy_awarded: "おめでとうございます！「%{name}」トロフィーを獲得しました！"
     delete_confirm: 削除しますか？
     terms: 利用規約
     message:
@@ -38,6 +39,7 @@ ja:
     create_board: 投稿作成
     duration: 継続期間
     profile: プロフィール
+    trophies: トロフィー一覧
   boards:
     new:
       title: 新規投稿作成

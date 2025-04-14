@@ -61,13 +61,15 @@
                 <% end %>
               </li>
               <li>
-                <details>
-                  <summary>
+                <details class="dropdown dropdown-end">
+                  <summary class="flex items-center justify-center p-1 rounded-full cursor-pointer">
                     <%= image_tag current_user.avatar_url, class: 'rounded-full h-8 w-8' %>
                   </summary>
-                  <ul class="p-2 bg-base-100 rounded-t-none">
+                  <ul
+                    class="p-2 menu dropdown-content z-[1] bg-base-100 rounded-box w-52 shadow-none border border-base-300">
                     <li><span class="text-sm"><%= current_user.decorate.full_name %></span></li>
                     <li><%= link_to t('header.profile'), profile_path %></li>
+                    <li><%= link_to t('header.trophies'), trophies_path %></li>
                     <li><%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %></li>
                   </ul>
                 </details>
@@ -104,6 +106,7 @@
 
         <li class="menu-title">ユーザー</li>
         <li><%= link_to t('header.profile'), profile_path %></li>
+        <li><%= link_to t('header.trophies'), trophies_path %></li>
         <li><%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %></li>
 
         <li class="mt-4">

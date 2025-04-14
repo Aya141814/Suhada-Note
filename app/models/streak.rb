@@ -4,6 +4,8 @@ class Streak < ApplicationRecord
 
   # デフォルト値の設定
   after_initialize :set_default_values, if: :new_record?
+  # saved_change_to_current_streakはDirtyAPIの一部で、その属性が保存操作で変更されたかどうかを確認している
+  after_save :check_trophies, if: :saved_change_to_current_streak?
 
   # 継続記録を更新する
   def record_activity(date = Date.today)
@@ -61,5 +63,9 @@ class Streak < ApplicationRecord
     self.start_date = date
     self.end_date = date
     save
+  end
+
+  def check_trophies
+    user.check_and_award_trophies
   end
 end

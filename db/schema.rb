@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_31_042748) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_11_064251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,15 +23,33 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_31_042748) do
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
+  create_table "board_skin_troubles", force: :cascade do |t|
+    t.bigint "board_id", null: false
+    t.bigint "skin_trouble_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id", "skin_trouble_id"], name: "index_board_skin_troubles_on_board_id_and_skin_trouble_id", unique: true
+    t.index ["board_id"], name: "index_board_skin_troubles_on_board_id"
+    t.index ["skin_trouble_id"], name: "index_board_skin_troubles_on_skin_trouble_id"
+  end
+
+  create_table "board_skincare_items", force: :cascade do |t|
+    t.bigint "board_id"
+    t.bigint "skincare_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id", "skincare_item_id"], name: "index_board_skincare_items_on_board_id_and_skincare_item_id", unique: true
+    t.index ["board_id"], name: "index_board_skincare_items_on_board_id"
+    t.index ["skincare_item_id"], name: "index_board_skincare_items_on_skincare_item_id"
+  end
+
   create_table "boards", force: :cascade do |t|
-    t.string "title", null: false
     t.text "body", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "board_image"
-    t.string "skincare_items"
-    t.string "skin_troubles"
+    t.boolean "is_public", default: true, null: false
     t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
@@ -55,6 +73,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_31_042748) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "skin_troubles", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_skin_troubles_on_name", unique: true
+  end
+
+  create_table "skincare_items", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_skincare_items_on_name", unique: true
+  end
+
   create_table "streaks", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "start_date"
@@ -69,6 +101,27 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_31_042748) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "trophies", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "trophy_type", null: false
+    t.integer "requirement", null: false
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_trophies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "trophy_id", null: false
+    t.datetime "achieved_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trophy_id"], name: "index_user_trophies_on_trophy_id"
+    t.index ["user_id", "trophy_id"], name: "index_user_trophies_on_user_id_and_trophy_id", unique: true
+    t.index ["user_id"], name: "index_user_trophies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,9 +141,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_31_042748) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "board_skin_troubles", "boards"
+  add_foreign_key "board_skin_troubles", "skin_troubles"
+  add_foreign_key "board_skincare_items", "boards"
+  add_foreign_key "board_skincare_items", "skincare_items"
   add_foreign_key "boards", "users"
   add_foreign_key "cheers", "boards"
   add_foreign_key "cheers", "users"
   add_foreign_key "comments", "boards"
   add_foreign_key "comments", "users"
+  add_foreign_key "user_trophies", "trophies"
+  add_foreign_key "user_trophies", "users"
 end
