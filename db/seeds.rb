@@ -8,7 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 puts "標準のseed実行: Rakeタスクを呼び出します..."
-
 # Rakeタスクを実行
 if Rails.env.production?
   # 本番環境では共通データのみ

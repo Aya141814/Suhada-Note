@@ -74,9 +74,9 @@ class User < ApplicationRecord
 
   def check_and_award_trophies
     awarded_trophies = []
-    Trophy.where(trophy_type: 'streak').each do |trophy|
+    Trophy.where(trophy_type: "streak").each do |trophy|
       next if has_trophy?(trophy)
-      
+
       if trophy.check_achievement(self)
         user_trophies.create!(
           trophy: trophy,

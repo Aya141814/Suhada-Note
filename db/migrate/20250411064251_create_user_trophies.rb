@@ -9,6 +9,6 @@ class CreateUserTrophies < ActiveRecord::Migration[7.2]
     end
 
     # ユーザーは同じトロフィーを1回だけ獲得できる
-    add_index :user_trophies, [:user_id, :trophy_id], unique: true
+    add_index :user_trophies, [ :user_id, :trophy_id ], unique: true
   end
 end

@@ -5,9 +5,8 @@ class DropBoardSkinCareCategories < ActiveRecord::Migration[7.2]
         t.references :board, foreign_key: true
         t.references :skin_care_category, foreign_key: true
         t.timestamps
-        t.index [:board_id, :skin_care_category_id], unique: true
+        t.index [ :board_id, :skin_care_category_id ], unique: true
       end
     end
-    
   end
 end

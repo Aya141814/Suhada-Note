@@ -5,6 +5,6 @@ class CreateBoardSkincareItems < ActiveRecord::Migration[7.2]
       t.references :skincare_item, foreign_key: true
       t.timestamps
     end
-    add_index :board_skincare_items, [:board_id, :skincare_item_id], unique: true
+    add_index :board_skincare_items, [ :board_id, :skincare_item_id ], unique: true
   end
 end

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :info, :success, :warning, :error, :trophy
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, error: exception.message || '権限がありません'
+    redirect_to root_path, error: exception.message || "権限がありません"
   end
 
   private
