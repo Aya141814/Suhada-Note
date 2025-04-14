@@ -62,6 +62,7 @@ ja:
   profiles:
     show:
       title: プロフィール
+      edit: 編集
     edit:
       title: プロフィール編集
   views:
