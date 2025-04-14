@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :cheer_boards, through: :cheers, source: :board
   has_one :streak, dependent: :destroy
   has_many :authentications, dependent: :destroy
+  has_many :user_trophies, dependent: :destroy
+  has_many :trophies, through: :user_trophies
   accepts_nested_attributes_for :authentications
 
   def own?(object)
@@ -63,5 +65,26 @@ class User < ApplicationRecord
   # ユーザーの表示名を返す
   def display_name
     "#{first_name} #{last_name}"
+  end
+
+  # トロフィーメソッド
+  def has_trophy?(trophy)
+    trophies.include?(trophy)
+  end
+
+  def check_and_award_trophies
+    awarded_trophies = []
+    Trophy.where(trophy_type: 'streak').each do |trophy|
+      next if has_trophy?(trophy)
+      
+      if trophy.check_achievement(self)
+        user_trophies.create!(
+          trophy: trophy,
+          achieved_at: Time.current
+        )
+        awarded_trophies << trophy
+      end
+    end
+    awarded_trophies
   end
 end

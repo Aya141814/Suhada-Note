@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
   resource :streak, only: %i[show]
+  resources :trophies, only: %i[index]
   resources :cheers, only: %i[create destroy]
   resources :password_resets, only: %i[new create edit update]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

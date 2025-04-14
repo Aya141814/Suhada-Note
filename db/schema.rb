@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_11_031434) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_11_064251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,6 +103,27 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_11_031434) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trophies", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "trophy_type", null: false
+    t.integer "requirement", null: false
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_trophies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "trophy_id", null: false
+    t.datetime "achieved_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trophy_id"], name: "index_user_trophies_on_trophy_id"
+    t.index ["user_id", "trophy_id"], name: "index_user_trophies_on_user_id_and_trophy_id", unique: true
+    t.index ["user_id"], name: "index_user_trophies_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -129,4 +150,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_11_031434) do
   add_foreign_key "cheers", "users"
   add_foreign_key "comments", "boards"
   add_foreign_key "comments", "users"
+  add_foreign_key "user_trophies", "trophies"
+  add_foreign_key "user_trophies", "users"
 end

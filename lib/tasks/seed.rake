@@ -23,6 +23,19 @@ namespace :db do
         skin_trouble = SkinTrouble.find_or_create_by!(name: name)
         puts "肌トラブル作成: #{skin_trouble.name}"
       end
+
+      trophies = [
+        { name: "初めての投稿", description: "初めての投稿をした時に獲得できるトロフィー", trophy_type: "streak", requirement: 1, icon: "first_trophy.png" },
+        { name: "一週間継続", description: "一週間継続した時に獲得できるトロフィー", trophy_type: "streak", requirement: 7, icon: "1week_trophy.png" },
+        { name: "二週間継続", description: "二週間継続した時に獲得できるトロフィー", trophy_type: "streak", requirement: 14, icon: "2week_trophy.png" },
+        { name: "一ヶ月間継続", description: "一ヶ月間継続した時に獲得できるトロフィー", trophy_type: "streak", requirement: 30, icon: "1month_trophy.png" }
+      ]
+
+      trophies.each do |trophy|
+        Trophy.find_or_create_by!(trophy)
+        puts "トロフィー作成: #{trophy[:name]}"
+      end
+      
       puts "共通のシードデータの読み込みが完了しました"
     end
 

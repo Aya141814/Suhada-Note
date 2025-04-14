@@ -1,5 +1,9 @@
+<%# 通常のフラッシュメッセージ処理 %>
 <% flash.each do |message_type, message| %>
 <% 
+  # トロフィーは特別な処理をするためスキップ
+  next if message_type == 'trophy' 
+
   # BootstrapのdangerタイプをdaisyUIのerrorに変換
   alert_class = message_type
   if message_type == 'danger'
@@ -30,4 +34,24 @@
     <% end %>
     <span><%= message %></span>
 </div>
+<% end %>
+
+<%# トロフィー通知の処理 %>
+<% if flash[:trophy].present? %>
+<% flash[:trophy].each do |trophy_message| %>
+<div role="alert" class="alert alert-success mb-4 trophy-alert">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span><%= trophy_message %></span>
+    <span class="ml-2 trophy-icon animate-trophy-bounce">🏆</span>
+    <%= link_to trophies_path, class: "ml-auto btn btn-sm btn-outline btn-success" do %>
+    トロフィー一覧を見る
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+    <% end %>
+</div>
+<% end %>
 <% end %>

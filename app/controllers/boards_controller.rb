@@ -18,8 +18,16 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board =current_user.boards.build(board_params)
+    @board = current_user.boards.build(board_params)
     if @board.save
+      # 新しく獲得したトロフィーがあれば通知
+      recently_awarded_trophies = Trophy.recently_awarded_for(current_user)
+      if recently_awarded_trophies.present?
+        trophy_messages = recently_awarded_trophies.map do |trophy|
+          t("defaults.flash_message.trophy_awarded", name: trophy.name)
+        end
+        flash[:trophy] = trophy_messages
+      end
       redirect_to boards_path, success: t("defaults.flash_message.created", item: Board.model_name.human)
     else
       flash.now[:danger] = t("defaults.flash_message.not_created", item: Board.model_name.human)
