@@ -1,5 +1,5 @@
 default_url_options:
   protocol: "https"
   host: "suhada-note.com"
-  sorcery:
-    google_callback_url: "https://suhada-note.com/oauth/callback?provider=google"
+sorcery:
+  google_callback_url: "https://suhada-note.com/oauth/callback?provider=google"
