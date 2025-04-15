@@ -83,13 +83,11 @@
         </article>
     </div>
     <%= render 'comments/form', comment: @comment, board: @board %>
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <table class="table">
-                <tbody id="table-comment">
-                    <%= render @comments %>
-                </tbody>
-            </table>
+    <div class="max-w-4xl mx-auto">
+        <div class="w-full">
+            <div id="table-comment">
+                <%= render @comments %>
+            </div>
         </div>
     </div>
 </div>

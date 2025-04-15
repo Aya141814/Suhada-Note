@@ -13,9 +13,6 @@
                 </div>
                 <% if current_user.own?(comment) %>
                 <div class="flex space-x-2">
-                    <%= link_to "#", class: "edit-comment-link text-blue-500 hover:text-blue-700 transition duration-300", data: { turbo_frame: dom_id(comment) } do %>
-                    <i class='fas fa-pencil-alt'></i>
-                    <% end %>
                     <%= link_to comment_path(comment), class: "delete-comment-link text-red-500 hover:text-red-700 transition duration-300", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
                     <i class="fas fa-trash-alt"></i>
                     <% end %>
