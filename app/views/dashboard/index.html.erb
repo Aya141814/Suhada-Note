@@ -1,0 +1,140 @@
+<div class="container mx-auto p-4">
+    <div class="card bg-base-100 shadow-xl mb-6">
+        <div class="card-body">
+            <h1 class="card-title text-2xl font-bold text-center lg:text-left mb-4">スキンケアログ</h1>
+
+            <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+                <div class="stat">
+                    <div class="stat-title">現在の継続期間</div>
+                    <div class="stat-value text-primary"><%= @current_streak %> 日</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-title">過去30日間の継続率</div>
+                    <div class="stat-value text-secondary"><%= @completion_rate %>%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title">スキンケア記録の推移</h3>
+                <div class="bg-base-100 rounded-box p-2">
+                    <%= line_chart current_user.boards.group_by_day(:created_at, last: 30).count, 
+                    xtitle: "日付", 
+                    ytitle: "記録数",
+                    colors: ["#FF9671"],
+                    height: "250px" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title">よく使用しているスキンケアアイテム</h3>
+                <div class="bg-base-100 rounded-box p-2">
+                    <%= pie_chart @recent_boards.joins(:skincare_items).group("skincare_items.name").count,
+                    height: "250px" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="calendar-section" class="card bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h3 class="card-title">今月のスキンケア記録</h3>
+
+            <style>
+                .simple-calendar {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                .simple-calendar th {
+                    text-align: center;
+                    padding: 0.5rem;
+                    background-color: hsl(var(--p) / 0.1);
+                }
+
+                .simple-calendar td {
+                    width: calc(100% / 7);
+                    /* 均等な幅を強制 */
+                    height: 80px;
+                    /* 固定高さ */
+                    border: 1px solid hsl(var(--b3));
+                    padding: 0.25rem;
+                    vertical-align: top;
+                    position: relative;
+                    overflow: hidden;
+                    /* セル自体の内容がはみ出ないようにする */
+                }
+
+                .calendar-day {
+                    height: 65px;
+                    /* セル内の日付表示部分以外の高さ */
+                    overflow-y: auto;
+                    position: absolute;
+                    top: 15px;
+                    /* 日付表示部分の高さ分だけ下げる */
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    padding: 0 0.25rem;
+                }
+
+                .day-number {
+                    position: absolute;
+                    top: 2px;
+                    left: 4px;
+                    font-weight: bold;
+                }
+
+                .calendar-day::-webkit-scrollbar {
+                    width: 4px;
+                }
+
+                .calendar-day::-webkit-scrollbar-thumb {
+                    background-color: hsl(var(--p) / 0.3);
+                    border-radius: 4px;
+                }
+
+                .calendar-event {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-bottom: 2px;
+                }
+
+                /* カスタムの小さいボタンスタイル */
+                .btn-mini {
+                    height: 1.25rem;
+                    min-height: 1.25rem;
+                    padding: 0 0.3rem;
+                    font-size: 0.65rem;
+                    line-height: 1;
+                }
+            </style>
+
+            <%= turbo_frame_tag "calendar" do %>
+            <div class="overflow-x-auto">
+                <%= month_calendar(events: @boards) do |date, boards| %>
+                <div class="day-number <%= Date.today == date ? 'text-primary' : '' %>">
+                    <%= date.day %>
+                </div>
+                <div class="calendar-day <%= Date.today == date ? 'bg-primary bg-opacity-20' : '' %>">
+                    <% boards.each do |board| %>
+                    <div class="calendar-event">
+                        <%= link_to board_path(board), class: "btn btn-mini btn-outline btn-primary w-full normal-case" do %>
+                        <span class="truncate"><%= board.body.truncate(12) %></span>
+                        <% end %>
+                    </div>
+                    <% end %>
+                </div>
+                <% end %>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

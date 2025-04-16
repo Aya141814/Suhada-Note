@@ -40,6 +40,7 @@ ja:
     duration: 継続期間
     profile: プロフィール
     trophies: トロフィー一覧
+    dashboard: スキンケアログ
   boards:
     new:
       title: 新規投稿作成
@@ -79,3 +80,7 @@ ja:
       title: パスワードリセット
   terms:
     title: 利用規約
+  simple_calendar:
+    previous: 前月
+    today: 今日
+    next: 次月

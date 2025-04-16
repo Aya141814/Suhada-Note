@@ -44,6 +44,7 @@
           </div>
           <div class="flex-none hidden lg:block">
             <ul class="menu menu-horizontal px-1">
+              <li><%= link_to t('header.dashboard'), dashboard_path %></li>
               <li><%= link_to t('header.board_index'), boards_path %></li>
               <li><%= link_to t('header.cheer_index'), cheers_boards_path %></li>
               <li><%= link_to t('header.create_board'), new_board_path %></li>
