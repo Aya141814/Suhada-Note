@@ -10,6 +10,7 @@ ja:
       trophy_awarded: "おめでとうございます！「%{name}」トロフィーを獲得しました！"
     delete_confirm: 削除しますか？
     terms: 利用規約
+    contact: お問い合わせ
     message:
       sent_reset_password_instructions: パスワードリセットのためのメールを送信しました
   helpers:
