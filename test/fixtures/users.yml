@@ -6,16 +6,14 @@
 #
 one:
   email: user1@example.com
-  first_name: User
-  last_name: One
+  nickname: 名前1
   crypted_password: <%= BCrypt::Password.create('password123') %>
   salt: <%= SecureRandom.hex(10) %>
 # column: value
 #
 two:
   email: user2@example.com
-  first_name: User
-  last_name: Two
+  nickname: 名前2
   crypted_password: <%= BCrypt::Password.create('password123') %>
   salt: <%= SecureRandom.hex(10) %>
 # column: value

@@ -46,8 +46,7 @@ namespace :db do
       # 開発環境のみのテストデータ
       10.times do
         user = User.create!(
-          last_name: Faker::Name.last_name,
-          first_name: Faker::Name.first_name,
+          nickname: Faker::Name.name,
           email: Faker::Internet.unique.email,
           password: "password",
           password_confirmation: "password"
