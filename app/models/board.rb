@@ -11,6 +11,10 @@ class Board < ApplicationRecord
   mount_uploader :board_image, BoardImageUploader
   after_create :update_streak
 
+  def start_time
+    created_at
+  end
+
   private
 
   def update_streak

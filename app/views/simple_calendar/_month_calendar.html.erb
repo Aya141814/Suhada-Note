@@ -1,0 +1,48 @@
+<div class="simple-calendar">
+  <%= turbo_frame_tag "calendar" do %>
+  <div class="calendar-heading">
+    <nav class="flex justify-between items-center mb-4">
+      <div class="flex items-center space-x-5">
+        <%= link_to calendar.url_for_today_view, class: "btn btn-primary", data: { turbo_frame: "calendar" } do %>
+        <%= t('simple_calendar.today', default: '今月') %>
+        <% end %>
+        <div class="flex items-center space-x-3">
+          <%= link_to calendar.url_for_previous_view, class: "btn btn-outline btn-primary", data: { turbo_frame: "calendar" } do %>
+          <i class="fas fa-chevron-left mr-1"></i>
+          <% end %>
+
+          <%= link_to calendar.url_for_next_view, class: "btn btn-outline btn-primary", data: { turbo_frame: "calendar" } do %>
+          <i class="fas fa-chevron-right ml-1"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="text-xl font-bold">
+        <%= start_date.strftime("%Y年%m月") %>
+      </div>
+    </nav>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+        <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+      <tr>
+        <% week.each do |day| %>
+        <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+        <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+        <% end %>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>

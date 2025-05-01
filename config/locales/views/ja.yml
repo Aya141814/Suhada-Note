@@ -10,6 +10,7 @@ ja:
       trophy_awarded: "おめでとうございます！「%{name}」トロフィーを獲得しました！"
     delete_confirm: 削除しますか？
     terms: 利用規約
+    contact: お問い合わせ
     message:
       sent_reset_password_instructions: パスワードリセットのためのメールを送信しました
   helpers:
@@ -40,6 +41,7 @@ ja:
     duration: 継続期間
     profile: プロフィール
     trophies: トロフィー一覧
+    dashboard: スキンケアログ
   boards:
     new:
       title: 新規投稿作成
@@ -62,6 +64,7 @@ ja:
   profiles:
     show:
       title: プロフィール
+      edit: 編集
     edit:
       title: プロフィール編集
   views:
@@ -76,3 +79,9 @@ ja:
       title: パスワードリセット申請
     edit:
       title: パスワードリセット
+  terms:
+    title: 利用規約
+  simple_calendar:
+    previous: 前月
+    today: 今日
+    next: 次月
