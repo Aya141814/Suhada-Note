@@ -4,7 +4,6 @@ FactoryBot.define do
     sequence(:nickname) { |n| "名前#{n}" }
     password { "password" }
     password_confirmation { "password" }
-
     # アバターを設定する場合（オプション）
     # avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/images/test_avatar.jpg'), 'image/jpeg') }
 
