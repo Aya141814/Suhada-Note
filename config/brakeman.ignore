@@ -1,0 +1,15 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/boards/cheers.html.erb",
+      "line": 8,
+      "code": "render(action => current_user.cheer_boards.includes(:user).order(:created_at => :desc).page(params[:page]), {})",
+      "confidence": "Weak",
+      "note": "ページネーションのパラメータは安全なため無視"
+    }
+  ]
+} 
