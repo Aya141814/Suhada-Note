@@ -19,8 +19,10 @@ class User < ApplicationRecord
   has_many :trophies, through: :user_trophies
   accepts_nested_attributes_for :authentications
 
+  # cheer関連メソッド
   def own?(object)
-    id == object&.user_id
+    return false if object.nil?
+    self.id == object.user_id
   end
 
   def cheer(board)
@@ -35,12 +37,12 @@ class User < ApplicationRecord
     cheer_boards.include?(board)
   end
 
-  # ユーザーのデフォルトストリークを取得（または作成）
+  # 継続期間関連メソッド
   def default_streak
     streak || create_streak
   end
 
-  # 継続記録を取得
+  # 現在の継続記録を取得
   def current_streak
     streak = default_streak
     {
@@ -51,22 +53,7 @@ class User < ApplicationRecord
     }
   end
 
-  # 後方互換性のために残しておく（deprecated）
-  def streak_for_category(_category_name = nil)
-    default_streak
-  end
-
-  # 後方互換性のために残しておく（deprecated）
-  def current_streak_for(_category_name = nil)
-    current_streak
-  end
-
-  # ユーザーの表示名を返す
-  def display_name
-    "#{nickname}"
-  end
-
-  # トロフィーメソッド
+  # トロフィー関連メソッド
   def has_trophy?(trophy)
     trophies.include?(trophy)
   end
@@ -74,8 +61,9 @@ class User < ApplicationRecord
   def check_and_award_trophies
     awarded_trophies = []
     Trophy.where(trophy_type: "streak").each do |trophy|
+      # トロフィーを持っている場合はスキップ
       next if has_trophy?(trophy)
-
+      # トロフィーを授与する条件を満たしている場合は授与
       if trophy.check_achievement(self)
         user_trophies.create!(
           trophy: trophy,

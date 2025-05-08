@@ -141,13 +141,6 @@ RSpec.describe User, type: :model do
     end
   end
   
-  describe "#display_name" do
-    it "ニックネームを返すこと" do
-      user = create(:user, nickname: "テストユーザー")
-      expect(user.display_name).to eq "テストユーザー"
-    end
-  end
-  
   describe "トロフィー関連メソッド" do
     let(:user) { create(:user) }
     let(:trophy) { create(:trophy) }
