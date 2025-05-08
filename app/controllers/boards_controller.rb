@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   # ログイン不要なアクションを先に設定
-  skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [ :index, :show ]
   # CanCanCanの設定を後に行う
   load_and_authorize_resource
 
@@ -45,7 +45,7 @@ class BoardsController < ApplicationController
     if Rails.env.test?
       @board = Board.find_by(id: params[:id]) || Board.first
     end
-    
+
     @board = Board.includes(:skincare_items).find(params[:id])
     @comment = Comment.new
     @comments = @board.comments.includes(:user).order(created_at: :desc)

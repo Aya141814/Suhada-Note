@@ -15,5 +15,4 @@ RSpec.describe Comment, type: :model do
       expect(comment).to be_valid
     end
   end
-  
 end

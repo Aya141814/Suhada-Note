@@ -6,7 +6,7 @@ RSpec.describe "Cheers", type: :request do
     context "when logged in" do
       let(:user) { create(:user) }
       let(:board) { create(:board) }
-      
+
       before do
         login_user(user)
       end

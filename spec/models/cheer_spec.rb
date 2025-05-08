@@ -19,8 +19,5 @@ RSpec.describe Cheer, type: :model do
       cheer= create(:cheer, user: user, board: board)
       expect(cheer).to be_valid
     end
-
   end
-  
-  
 end

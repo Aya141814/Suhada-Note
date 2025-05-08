@@ -17,13 +17,11 @@ RSpec.describe Board, type: :model do
       expect(board).not_to be_valid
     end
   end
+
   describe "インスタンスメソッド" do
     it "#start_time" do
       board = create(:board)
       expect(board.start_time).to eq(board.created_at)
     end
-  end
-  
-  
   end
 end

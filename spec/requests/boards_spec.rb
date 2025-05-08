@@ -30,7 +30,7 @@ RSpec.describe "Boards", type: :request do
         expect(response).to have_http_status(200)
       end
     end
-  
+
     describe "POST /create" do
       it "returns http success" do
         post boards_path, params: { board: { body: "test" } }
@@ -45,7 +45,7 @@ RSpec.describe "Boards", type: :request do
         get edit_board_path(board)
         expect(response).to have_http_status(200)
       end
-    end 
+    end
 
     describe "PATCH /update" do
       it "returns http success" do
@@ -81,5 +81,4 @@ RSpec.describe "Boards", type: :request do
       end
     end
   end
-
 end
