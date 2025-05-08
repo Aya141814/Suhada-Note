@@ -2,12 +2,6 @@
 require 'spec_helper'
 require 'support/login_macros'
 
-# CarrierWaveの設定を環境設定の前に移動
-CarrierWave.configure do |config|
-  config.storage = :file
-  config.enable_processing = false
-end
-
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
