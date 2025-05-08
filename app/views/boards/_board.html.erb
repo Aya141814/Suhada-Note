@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <%# ここからボタン設定（ここは変えたくない） %>
-                    <% if current_user.own?(board) %>
+                    <% if current_user.present? && current_user.own?(board) %>
                     <div class="flex gap-2">
                         <%= link_to edit_board_path(board), id: "button-edit-#{board.id}", class: "btn btn-ghost btn-circle btn-sm" do %>
                         <i class='fas fa-pencil-alt'></i>
@@ -45,7 +45,9 @@
                         <% end %>
                     </div>
                     <% else %>
+                    <% if current_user.present? %>
                     <%= render "cheer_buttons", {board: board} %>
+                    <% end %>
                     <% end %>
                 </div>
                 <%# スキンケアアイテム %>

@@ -11,7 +11,7 @@
                     <h3 class="text-sm font-semibold text-gray-900"><%= comment.user.decorate.full_name %></h3>
                     <p class="text-xs text-gray-500 mt-1"><%= l comment.created_at, format: :long %></p>
                 </div>
-                <% if current_user.own?(comment) %>
+                <% if current_user.present? && current_user.own?(comment) %>
                 <div class="flex space-x-2">
                     <%= link_to comment_path(comment), class: "delete-comment-link text-red-500 hover:text-red-700 transition duration-300", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
                     <i class="fas fa-trash-alt"></i>

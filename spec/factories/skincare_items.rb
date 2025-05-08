@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :skincare_item do
-    name { "MyString" }
+    name { Faker::Lorem.word }
   end
 end

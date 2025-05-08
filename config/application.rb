@@ -27,5 +27,8 @@ module Myapp
 
     # すべての環境で suhada-note.com を許可
     config.hosts << "suhada-note.com" unless Rails.env.production? # 本番環境では既に設定済み
+
+    # テストで www.example.com を許可(ref:https://qiita.com/masaxyz_labo/items/ac27d652e301e212e8ce)
+    config.hosts << ".example.com" if Rails.env.test?
   end
 end

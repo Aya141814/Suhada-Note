@@ -6,6 +6,7 @@
             <div class="grid grid-cols-1 gap-3 max-w-2xl mx-auto">
                 <% if @cheer_boards.present? %>
                 <%= render @cheer_boards %>
+                <%= paginate @cheer_boards %>
                 <% else %>
                 <p><%= t('.no_result') %></p>
                 <% end %>

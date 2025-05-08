@@ -1,0 +1,58 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "d53a13997c951fb765ae2b4fa63ed7ac2847b6bb6e2409110785f1031122a41a",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/boards/cheers.html.erb",
+      "line": 8,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => current_user.cheer_boards.includes(:user).order(:created_at => :desc).page(params[:page]), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "BoardsController",
+          "method": "cheers",
+          "line": 21,
+          "file": "app/controllers/boards_controller.rb",
+          "rendered": {
+            "name": "boards/cheers",
+            "file": "app/views/boards/cheers.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "boards/cheers"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "your_fingerprint_here",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/boards/cheers.html.erb",
+      "line": 8,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => current_user.cheer_boards.includes(:user).order(:created_at => :desc).page(params[:page]), {})",
+      "render_path": null,
+      "location": {
+        "type": "template",
+        "template": "boards/cheers"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "note": "This is a safe pagination parameter usage"
+    }
+  ],
+  "brakeman_version": "7.0.2"
+}
