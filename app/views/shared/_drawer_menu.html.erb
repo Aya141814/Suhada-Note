@@ -1,0 +1,33 @@
+<div class="drawer-side z-20">
+  <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+  <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+    <% if logged_in? %>
+      <li class="menu-title mt-8">メニュー</li>
+      <li><%= link_to t('header.dashboard'), dashboard_path %></li>
+      <li><%= link_to t('header.board_index'), boards_path %></li>
+      <li><%= link_to t('header.cheer_index'), cheers_boards_path %></li>
+      <li><%= link_to t('header.create_board'), new_board_path %></li>
+
+      <li class="menu-title mt-8">ユーザー</li>
+      <li><%= link_to t('header.profile'), profile_path %></li>
+      <li><%= link_to t('header.trophies'), trophies_path %></li>
+      <li><%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %></li>
+
+      <li class="mt-4">
+        <%= link_to streak_path, class: "flex items-center" do %>
+          <% streak_info = current_user.current_streak %>
+          <span class="<%= streak_info[:active] ? 'text-success' : 'text-base-content opacity-70' %> font-semibold">
+            <%= streak_info[:count] %>日連続投稿中
+            <% unless streak_info[:active] %>
+              （記録を投稿しよう！）
+            <% end %>
+          </span>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="menu-title">メニュー</li>
+      <li><%= link_to t('header.login'), login_path %></li>
+      <li><%= link_to t('defaults.terms'), page_path('terms') %></li>
+    <% end %>
+  </ul>
+</div> 

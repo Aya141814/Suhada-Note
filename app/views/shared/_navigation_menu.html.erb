@@ -1,0 +1,32 @@
+<ul class="menu menu-horizontal px-1">
+  <li><%= link_to t('header.dashboard'), dashboard_path %></li>
+  <li><%= link_to t('header.board_index'), boards_path %></li>
+  <li><%= link_to t('header.cheer_index'), cheers_boards_path %></li>
+  <li><%= link_to t('header.create_board'), new_board_path %></li>
+  <% if current_user %>
+    <li>
+      <%= link_to streak_path do %>
+        <% streak_info = current_user.current_streak %>
+        <span class="<%= streak_info[:active] ? 'text-success' : 'text-base-content opacity-70' %> font-semibold">
+          <%= streak_info[:count] %>日連続投稿中
+          <% unless streak_info[:active] %>
+            （記録を投稿しよう！）
+          <% end %>
+        </span>
+      <% end %>
+    </li>
+    <li>
+      <details class="dropdown dropdown-end">
+        <summary class="flex items-center justify-center p-1 rounded-full cursor-pointer">
+          <%= image_tag current_user.avatar_url, class: 'rounded-full h-8 w-8' %>
+        </summary>
+        <ul class="p-2 menu dropdown-content z-[1] bg-base-100 rounded-box w-52 shadow-none border border-base-300">
+          <li><span class="text-sm"><%= current_user.decorate.full_name %></span></li>
+          <li><%= link_to t('header.profile'), profile_path %></li>
+          <li><%= link_to t('header.trophies'), trophies_path %></li>
+          <li><%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %></li>
+        </ul>
+      </details>
+    </li>
+  <% end %>
+</ul> 
