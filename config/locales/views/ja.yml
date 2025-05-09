@@ -64,9 +64,11 @@ ja:
   profiles:
     show:
       title: プロフィール
+      nickname: ニックネーム
       edit: 編集
     edit:
       title: プロフィール編集
+      to_login_page: ログインページ
   views:
     pagination:
       first: "&laquo; 最初"
