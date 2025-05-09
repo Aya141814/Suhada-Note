@@ -33,7 +33,7 @@
 
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body">
-                <h3 class="card-title">よく使用しているスキンケアアイテム</h3>
+                <h3 class="card-title">スキンケアアイテム使用率</h3>
                 <div class="bg-base-100 rounded-box p-2">
                     <%= pie_chart @recent_boards.joins(:skincare_items).group("skincare_items.name").count,
                     height: "250px" %>
@@ -43,19 +43,19 @@
     </div>
 
     <div id="calendar-section" class="card bg-base-100 shadow-xl">
-        <div class="card-body">
+        <div class="card-body p-2 sm:p-4">
             <h3 class="card-title">今月のスキンケア記録</h3>
             <%= turbo_frame_tag "calendar" do %>
             <div class="overflow-x-auto">
                 <%= month_calendar(events: @boards) do |date, boards| %>
-                <div class="day-number <%= Date.today == date ? 'text-primary' : '' %>">
+                <div class="day-number text-sm sm:text-base <%= Date.today == date ? 'text-primary' : '' %>">
                     <%= date.day %>
                 </div>
-                <div class="calendar-day <%= Date.today == date ? 'bg-primary bg-opacity-20' : '' %>">
+                <div class="calendar-day min-h-[60px] <%= Date.today == date ? 'bg-primary bg-opacity-20' : '' %>">
                     <% boards.each do |board| %>
                     <div class="calendar-event">
-                        <%= link_to board_path(board), class: "btn btn-mini btn-outline btn-primary w-full normal-case" do %>
-                        <span class="truncate"><%= board.body.truncate(12) %></span>
+                        <%= link_to board_path(board), class: "btn btn-mini btn-outline btn-primary w-full normal-case text-xs sm:text-sm py-1 px-2", data: { turbo_frame: "_top" } do %>
+                        <span class="block truncate max-w-full"><%= board.body.truncate(8) %></span>
                         <% end %>
                     </div>
                     <% end %>
