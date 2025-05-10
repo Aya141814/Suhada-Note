@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # Defines the root path route ("/")
   # root "posts#index"
+  get "loged_in_top_page", to: "static_pages#loged_in_top_page"
 end
