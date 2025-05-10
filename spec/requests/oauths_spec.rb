@@ -21,7 +21,7 @@ RSpec.describe "Oauths", type: :request do
 
       it "ログインして root_path にリダイレクトすること" do
         get "/oauth/callback", params: { provider: provider }
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(boards_path)
         expect(flash[:notice]).to eq "#{provider.titleize}アカウントでログインしました"
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe "Oauths", type: :request do
 
       it "新規ユーザーを作成してログインすること" do
         get "/oauth/callback", params: { provider: provider }
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(boards_path)
         expect(flash[:notice]).to eq "#{provider.titleize}アカウントでログインしました"
       end
     end

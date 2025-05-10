@@ -2,7 +2,7 @@
 <div class="container mx-auto px-4">
     <div class="flex justify-center">
         <div class="w-full md:w-2/3 lg:w-1/2">
-            <h1 class="text-2xl font-bold mb-4"><%= t('.title') %></h1>
+            <h1 class="text-2xl font-bold mb-4 text-center mt-8"><%= t('.title') %></h1>
             <%= form_with model: @user, url: profile_path, method: :put, class: 'space-y-4' do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <div class="mb-3">
@@ -24,7 +24,7 @@
             <%= f.submit class: "w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
             <% end %>
             <div class='text-center mt-4'>
-                <%= link_to t('.to_login_page'), login_path, class: "text-indigo-600 hover:text-indigo-800" %>
+                <%= link_to t('profiles.edit.to_login_page'), login_path, class: "text-indigo-600 hover:text-indigo-800" %>
             </div>
         </div>
     </div>
