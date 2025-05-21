@@ -7,10 +7,8 @@ class Streak < ApplicationRecord
   # saved_change_to_current_streakはDirtyAPIの一部で、その属性が保存操作で変更されたかどうかを確認している
   after_save :check_trophies, if: :saved_change_to_current_streak?
 
-  # 継続記録を更新する
-  def record_activity(date = Date.today)
-    return if recorded_today?(date)
-
+  # 継続記録を更新するメソッド（boardモデルから呼び出される）
+  def update_streak(date = Date.today)
     if continuing_streak?(date)
       increment_streak(date)
     else
@@ -18,12 +16,7 @@ class Streak < ApplicationRecord
     end
   end
 
-  # 表示用のメソッド
-  def display_streak
-    return 0 if current_streak.nil?
-    current_streak
-  end
-
+  # ⭐️streakのビュー関連メソッドここから⭐️
   # 最終投稿日からの経過日数を計算
   def days_since_last_post
     return nil if end_date.nil?
@@ -35,17 +28,13 @@ class Streak < ApplicationRecord
     return false if end_date.nil?
     (Date.current - end_date).to_i <= 1
   end
-
+  # ⭐️ここまで⭐️
+  
   private
-
   def set_default_values
     self.current_streak ||= 0
     self.start_date ||= nil
     self.end_date ||= nil
-  end
-
-  def recorded_today?(date)
-    end_date == date
   end
 
   def continuing_streak?(date)

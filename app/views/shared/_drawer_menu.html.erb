@@ -15,13 +15,17 @@
 
       <li class="mt-4">
         <%= link_to streak_path, class: "flex items-center" do %>
-          <% streak_info = current_user.current_streak %>
-          <span class="<%= streak_info[:active] ? 'text-success' : 'text-base-content opacity-70' %> font-semibold">
-            <%= streak_info[:count] %>日連続投稿中
-            <% unless streak_info[:active] %>
+          <span>
+          <% if current_user.streak %>
+            <% if current_user.streak.current_streak >= 1 %>
+              <span class="text-success font-semibold"><%= current_user.streak.current_streak %> 日連続投稿中！</span>
+            <% else %>
               （記録を投稿しよう！）
             <% end %>
-          </span>
+          <% else %>
+              （記録を投稿しよう！）
+          <% end %>
+        </span>
         <% end %>
       </li>
     <% else %>

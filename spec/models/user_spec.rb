@@ -106,39 +106,6 @@ RSpec.describe User, type: :model do
         end
       end
     end
-
-    describe "#current_streak" do
-      context "アクティブなストリークがある場合" do
-        before do
-          streak = create(:streak, user: user, current_streak: 5)
-          allow(streak).to receive(:active?).and_return(true)
-          allow(streak).to receive(:display_streak).and_return(5)
-          allow(streak).to receive(:days_since_last_post).and_return(0)
-        end
-
-        it "適切な値を含むハッシュを返すこと" do
-          result = user.current_streak
-          expect(result[:count]).to eq 5
-          expect(result[:active]).to be true
-          expect(result[:days_since_last]).to eq 0
-        end
-      end
-
-      context "アクティブなストリークがない場合" do
-        before do
-          streak = create(:streak, user: user, current_streak: 5)
-          allow(streak).to receive(:active?).and_return(false)
-          allow(streak).to receive(:days_since_last_post).and_return(1)
-        end
-
-        it "適切な値を含むハッシュを返すこと" do
-          result = user.current_streak
-          expect(result[:count]).to eq 0
-          expect(result[:active]).to be false
-          expect(result[:days_since_last]).to eq 1
-        end
-      end
-    end
   end
 
   describe "トロフィー関連メソッド" do
