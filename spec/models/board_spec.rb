@@ -24,8 +24,8 @@ RSpec.describe Board, type: :model do
       context "その日に投稿済みの場合" do
         it "falseが返ってくること" do
           previous_board = create(:board, user: user)
-          board = create(:board, user: user, created_at: previous_board.created_at + 1.hour)
-
+          board = create(:board, user: user, created_at: previous_board.created_at + 1.second)
+          p user.boards
           day_start = board.created_at.beginning_of_day
           day_end = board.created_at.end_of_day
 
