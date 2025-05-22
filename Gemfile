@@ -28,7 +28,7 @@ gem "meta-tags"
 gem "faker"
 gem "pry-byebug", group: :development
 gem "draper", "4.0.2"
-gem "carrierwave", "3.1.0"
+gem "carrierwave", "3.1.2"
 gem "aws-sdk-s3", require: false
 gem "fog-aws"
 gem "kaminari"
