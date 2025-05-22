@@ -48,4 +48,12 @@
 
 ## 🫧 今後実装予定
 
-- 継続期間のトロフィー
+- 通知機能
+
+## ER 図
+
+Draw.io: https://drive.google.com/file/d/1gxLZpK0wQogF_ZGB841fAlB-3LnZvrHH/view?usp=sharing
+
+## 画面遷移図
+
+Figma: https://www.figma.com/design/uxmtbh8nprKtklUO3TIcrz/Suhada_Note%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=N5jagEegtKRqN0tb-1
