@@ -47,7 +47,7 @@
             <h3 class="card-title">今月のスキンケア記録</h3>
             <%= turbo_frame_tag "calendar" do %>
             <div class="overflow-x-auto">
-                <%= month_calendar(events: @boards) do |date, boards| %>
+                <%= month_calendar(events: @boards, attribute: :created_at) do |date, boards| %>
                 <div class="day-number text-sm sm:text-base <%= Date.today == date ? 'text-primary' : '' %>">
                     <%= date.day %>
                 </div>
