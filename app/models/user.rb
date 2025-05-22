@@ -63,5 +63,4 @@ class User < ApplicationRecord
     end
     awarded_trophies
   end
-
 end

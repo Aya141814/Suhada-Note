@@ -34,7 +34,7 @@ RSpec.describe Board, type: :model do
                                   .where("created_at < ?", board.created_at)
                                   .exists?
           expect(is_first_board_on_day).to be false
-        end                       
+        end
       end
 
       context "その日初めての投稿の場合" do
@@ -52,9 +52,5 @@ RSpec.describe Board, type: :model do
         end
       end
     end
-    
-    
-      
-      
   end
 end

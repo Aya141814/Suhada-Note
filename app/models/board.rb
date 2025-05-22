@@ -28,6 +28,5 @@ class Board < ApplicationRecord
       streak = user.default_streak
       streak.update_streak
     end
-      
   end
 end

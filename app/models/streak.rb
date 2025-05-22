@@ -29,7 +29,7 @@ class Streak < ApplicationRecord
     (Date.current - end_date).to_i <= 1
   end
   # ⭐️ここまで⭐️
-  
+
   private
   def set_default_values
     self.current_streak ||= 0
