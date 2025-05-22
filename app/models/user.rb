@@ -42,17 +42,6 @@ class User < ApplicationRecord
     streak || create_streak
   end
 
-  # 現在の継続記録を取得
-  def current_streak
-    streak = default_streak
-    {
-      # 三項演算子で「条件式 ? 真の場合の値 : 偽の場合の値」を返すもの
-      count: streak.active? ? streak.display_streak : 0,
-      active: streak.active?,
-      days_since_last: streak.days_since_last_post
-    }
-  end
-
   # トロフィー関連メソッド
   def has_trophy?(trophy)
     trophies.include?(trophy)

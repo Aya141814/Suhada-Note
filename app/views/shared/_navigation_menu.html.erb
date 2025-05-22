@@ -6,11 +6,15 @@
   <% if current_user %>
     <li>
       <%= link_to streak_path do %>
-        <% streak_info = current_user.current_streak %>
-        <span class="<%= streak_info[:active] ? 'text-success' : 'text-base-content opacity-70' %> font-semibold">
-          <%= streak_info[:count] %>日連続投稿中
-          <% unless streak_info[:active] %>
-            （記録を投稿しよう！）
+        <span>
+          <% if current_user.streak %>
+            <% if current_user.streak.active? %>
+              <span class="text-success font-semibold"><%= current_user.streak.current_streak %> 日連続投稿中！</span> 
+            <% else %>
+              （記録を投稿しよう！）
+            <% end %>
+          <% else %>
+              （記録を投稿しよう！）
           <% end %>
         </span>
       <% end %>

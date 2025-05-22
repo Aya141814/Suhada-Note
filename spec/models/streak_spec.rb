@@ -29,16 +29,16 @@ RSpec.describe Streak, type: :model do
     let(:user) { create(:user) }
     let(:streak) { create(:streak, user: user, current_streak: 1, start_date: Date.yesterday, end_date: Date.yesterday) }
 
-    describe '#record_activity' do
+    describe '#update_streak' do
       context '昨日が最終活動日の場合' do
         it '連続記録が増える' do
           expect {
-            streak.record_activity
+            streak.update_streak(date = Date.today)
           }.to change { streak.current_streak }.by(1)
         end
 
         it '最終活動日が更新される' do
-          streak.record_activity
+          streak.update_streak(date = Date.today)
           expect(streak.end_date).to eq(Date.today)
         end
       end
@@ -50,7 +50,7 @@ RSpec.describe Streak, type: :model do
 
         it '連続記録は変わらない' do
           expect {
-            streak.record_activity
+            streak.update_streak
           }.not_to change { streak.current_streak }
         end
       end
@@ -61,27 +61,15 @@ RSpec.describe Streak, type: :model do
         end
 
         it '連続記録は1になる' do
-          streak.record_activity
+          streak.update_streak
           expect(streak.current_streak).to eq(1)
         end
 
         it '開始日と終了日が今日になる' do
-          streak.record_activity
+          streak.update_streak
           expect(streak.start_date).to eq(Date.today)
           expect(streak.end_date).to eq(Date.today)
         end
-      end
-    end
-
-    describe '#display_streak' do
-      it 'current_streakの値を返す' do
-        streak.current_streak = 5
-        expect(streak.display_streak).to eq(5)
-      end
-
-      it 'current_streakがnilの場合は0を返す' do
-        streak.current_streak = nil
-        expect(streak.display_streak).to eq(0)
       end
     end
 
