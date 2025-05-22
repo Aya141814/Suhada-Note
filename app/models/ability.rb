@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :index, Board
+    can :index, Board, is_public: true
     # 全ユーザー（ログインなし含む）に公開ボードの閲覧権限を付与
     can :read, Board, is_public: true
 
