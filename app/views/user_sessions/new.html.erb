@@ -4,7 +4,7 @@
         <h1 class="text-3xl font-bold mb-8 text-center"><%= t(".title") %></h1>
         <div class="flex justify-center mb-4">
             <button class="gsi-material-button"
-                onclick="location.href='<%= auth_at_provider_path(provider: :google) %>'">
+                onclick="location.href=<%= "'#{auth_at_provider_path(provider: :google)}'" %>">
                 <div class="gsi-material-button-state"></div>
                 <div class="gsi-material-button-content-wrapper">
                     <div class="gsi-material-button-icon">
