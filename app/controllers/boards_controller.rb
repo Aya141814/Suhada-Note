@@ -21,8 +21,18 @@ class BoardsController < ApplicationController
   end
 
   def create
+    Rails.logger.info "=== BOARD CREATE: Starting board creation ==="
+    Rails.logger.info "User ID: #{current_user.id}, Params: #{board_params}"
+    
     @board = current_user.boards.build(board_params)
+    
+    Rails.logger.info "=== BOARD CREATE: Board built, attempting save ==="
+    Rails.logger.info "Board valid?: #{@board.valid?}"
+    
     if @board.save
+      Rails.logger.info "=== BOARD CREATE: Board saved successfully ==="
+      Rails.logger.info "Board ID: #{@board.id}, created_at: #{@board.created_at}"
+      
       # 新しく獲得したトロフィーがあれば通知
       recently_awarded_trophies = Trophy.recently_awarded_for(current_user)
       if recently_awarded_trophies.present?
@@ -33,6 +43,9 @@ class BoardsController < ApplicationController
       end
       redirect_to boards_path, success: t("defaults.flash_message.created", item: Board.model_name.human)
     else
+      Rails.logger.error "=== BOARD CREATE: Board save failed ==="
+      Rails.logger.error "Errors: #{@board.errors.full_messages}"
+      
       flash.now[:danger] = t("defaults.flash_message.not_created", item: Board.model_name.human)
       @skincare_items = SkincareItem.all
       @skin_troubles = SkinTrouble.all
