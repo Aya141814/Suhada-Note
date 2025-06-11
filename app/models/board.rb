@@ -17,16 +17,14 @@ class Board < ApplicationRecord
   def trigger_for_streak
     # この投稿の作成日の開始時刻（その日の0時0分0秒）と終了時刻（その日の23時59分59秒）を取得
     day_start = self.created_at.beginning_of_day
-    day_end = self.created_at.end_of_day
 
     is_first_board_on_day = !user.boards
-        .where(created_at: day_start..day_end)
-        .where("created_at < ?", self.created_at)
-        .exists?
+      .where(created_at: day_start...self.created_at)  # その日の0:00〜現在の投稿時刻（排他）
+      .exists?
 
     if is_first_board_on_day
       streak = user.default_streak
-      streak.update_streak
+      streak.update_streak(self.created_at.to_date)
     end
   end
 end
